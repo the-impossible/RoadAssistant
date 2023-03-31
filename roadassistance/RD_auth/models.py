@@ -6,7 +6,7 @@ import uuid
 
 # Create your models here.
 class UserManager(BaseUserManager):
-    def create_user(self, email, name, phone, password=None):
+    def create_user(self, email, name, phone, is_mec=None, password=None):
 
         #creates a user with the parameters
         if not email:
@@ -20,11 +20,15 @@ class UserManager(BaseUserManager):
 
         if password is None:
             raise ValueError('Password is required!')
+        
+        if is_mec is None:
+            raise ValueError('User type is required!')
 
         user = self.model(
             email = self.normalize_email(email.strip()),
             name = name.strip(),
             phone = phone.strip(),
+            is_mec = is_mec,
         )
 
         user.set_password(password)
@@ -45,12 +49,14 @@ class UserManager(BaseUserManager):
 
         if password is None:
             raise ValueError('Password should not be empty')
+        
 
         user = self.create_user(
             email = self.normalize_email(email.strip()),
             password=password,
             name = name,
             phone = phone,
+            is_mec='false'
         )
 
         user.is_staff = True
@@ -88,7 +94,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     def has_module_perms(self, app_label):
         return True
-
 
     class Meta:
         db_table = 'Users'
