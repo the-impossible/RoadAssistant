@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:welcome/Intro/components/outlineDefaultButton.dart';
 import 'package:welcome/constant.dart';
 
+import '../../routes/routes.dart';
+
 class BottomButton extends StatelessWidget {
   const BottomButton({
     Key? key,
@@ -13,17 +15,17 @@ class BottomButton extends StatelessWidget {
       child: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
-          children: const [
+          children: [
             OutlineDefaultButton(
               btnText: 'Sign in',
-              press: '/login',
+              press: Routes.login,
             ),
             SizedBox(
               height: kDefaultPadding,
             ),
             OutlineDefaultButton(
               btnText: 'Sign Up',
-              press: '/registerPage',
+              press: Routes.registerPage,
             ),
           ],
         ),

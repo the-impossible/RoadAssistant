@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:welcome/constant.dart';
 
 class inputField extends StatelessWidget {
-  Icon fieldIcon;
-  String hintText;
+  Icon? fieldIcon;
+  String? hintText;
   bool obscure;
 
   inputField(this.fieldIcon, this.hintText, {required this.obscure});

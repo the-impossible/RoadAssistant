@@ -19,20 +19,28 @@ class _NotificationListState extends State<NotificationList> {
           title: 'Notifications',
           child: DefaultBackButton(),
         ),
-        body: ListView.separated(
+        body: ListView.builder(
           physics: const ClampingScrollPhysics(),
           padding: EdgeInsets.zero,
-          itemCount: 15,
+          itemCount: 10,
           itemBuilder: (context, index) {
-            return NotificationTiles(
-                title: 'COMMENT',
-                subtitle: 'Your customer just send you feedback',
-                enabled: true,
-                onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                    builder: (context) => NotificationPage())));
-          },
-          separatorBuilder: (context, index) {
-            return Divider();
+            return Column(
+              children: [
+                NotificationTiles(
+                  title: 'COMMENT',
+                  subtitle: 'Your customer just send you feedback',
+                  enabled: true,
+                  onTap: () => Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => NotificationPage(),
+                    ),
+                  ),
+                  leadingIcon: Icons.notification_important_outlined,
+                  trailingIcon: Icons.arrow_forward_ios_outlined,
+                ),
+                const Divider()
+              ],
+            );
           },
         ));
   }

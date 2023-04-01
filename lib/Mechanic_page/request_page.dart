@@ -21,9 +21,11 @@ class _RequestPageState extends State<RequestPage> {
         body: ListView.separated(
             physics: ClampingScrollPhysics(),
             padding: EdgeInsets.zero,
-            itemCount: 25,
+            itemCount: 10,
             itemBuilder: (context, index) {
               return ListTile(
+                leading: Icon(Icons.notifications_active_outlined),
+                trailing: Icon(Icons.arrow_forward_ios),
                 title: const Text(
                   'New Request',
                   style: TextStyle(color: kDarkColor),

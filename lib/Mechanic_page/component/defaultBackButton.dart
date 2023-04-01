@@ -12,7 +12,7 @@ class DefaultBackButton extends StatelessWidget {
       onPressed: () => Navigator.of(context).pop(),
       icon: const Icon(
         Icons.arrow_back_ios,
-        color: kPrimaryColor,
+        color: kWhiteColor,
       ),
     );
   }

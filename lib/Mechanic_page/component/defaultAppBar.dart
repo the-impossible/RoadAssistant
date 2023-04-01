@@ -17,13 +17,17 @@ class DefaultAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       title: Text(
         title,
-        style: TextStyle(color: kPrimaryColor),
+        style: const TextStyle(
+          color: kDarkColor,
+          fontFamily: 'Schuyler',
+          fontWeight: FontWeight.bold,
+        ),
       ),
       // elevation: kRadius,
       centerTitle: true,
       automaticallyImplyLeading: false,
-      backgroundColor: kWhiteColor,
-      iconTheme: IconThemeData(color: kPrimaryColor),
+      backgroundColor: kFriendlyColor,
+      iconTheme: const IconThemeData(color: kPrimaryColor),
       shadowColor: kWhiteColor,
       leading: child,
     );

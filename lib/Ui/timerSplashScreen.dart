@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:get/get.dart';
 import 'package:welcome/Intro/intro.dart';
 import 'package:welcome/constant.dart';
+
+import '../routes/routes.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,12 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     Timer(
       Duration(seconds: 5),
-      () => Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Intro(),
-        ),
-      ),
+      () => Get.offNamed(Routes.intro),
     );
   }
 

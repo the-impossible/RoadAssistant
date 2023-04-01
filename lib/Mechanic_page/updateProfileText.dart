@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/constant.dart';
+
+import '../routes/routes.dart';
 
 class UpdateProfileText extends StatelessWidget {
   const UpdateProfileText({
@@ -29,7 +32,7 @@ class UpdateProfileText extends StatelessWidget {
             // ),
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '');
+                Get.toNamed(Routes.updatePage);
               },
               child: const Text(
                 "Edit Profile",
@@ -66,7 +69,7 @@ class UpdateProfileText extends StatelessWidget {
             padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/aboutPage');
+                Get.toNamed(Routes.aboutPage);
               },
               child: const Text(
                 "About Us",
@@ -101,14 +104,9 @@ class UpdateProfileText extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            // alignment: Alignment.bottomLeft,
-            // width: 500,
-            // decoration: BoxDecoration(
-            //   border: Border.all(color: kDarkColor),
-            // ),
             child: TextButton(
               onPressed: () {
-                Navigator.pushNamed(context, '/login');
+                Get.toNamed(Routes.login);
               },
               child: const Text(
                 "Logout",

@@ -8,31 +8,24 @@ class TopLanding extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      child: Expanded(
-        flex: 1,
-        child: Container(
-          // padding: EdgeInsets.only(top: 50),
-          child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: const [
-                Padding(
-                  padding: EdgeInsets.only(top: 40),
-                  child: Image(
-                    image: AssetImage(landing),
-                    height: 170,
-                  ),
-                ),
-                SizedBox(
-                  height: 50,
-                ),
-                Text(
-                  'Get Mechanics',
-                  style: TextStyle(color: kShow),
-                ),
-              ]),
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: const [
+        Padding(
+          padding: EdgeInsets.only(top: 70),
+          child: Image(
+            image: AssetImage(landing),
+            height: 170,
+          ),
         ),
-      ),
+        SizedBox(
+          height: 50,
+        ),
+        Text(
+          'Get Mechanics',
+          style: TextStyle(color: kShow),
+        ),
+      ],
     );
   }
 }

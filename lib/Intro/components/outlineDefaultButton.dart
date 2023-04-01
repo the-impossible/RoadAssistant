@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/constant.dart';
 
 class OutlineDefaultButton extends StatelessWidget {
@@ -30,7 +31,7 @@ class OutlineDefaultButton extends StatelessWidget {
             ),
           ),
         ),
-        onPressed: () => Navigator.pushNamed(context, press),
+        onPressed: () => Get.toNamed(press),
         child: Text(
           btnText.toUpperCase(),
           style: TextStyle(color: kPrimaryColor),

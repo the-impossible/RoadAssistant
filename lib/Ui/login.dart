@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/inputField.dart';
+import 'package:welcome/routes/routes.dart';
 
 class Login extends StatelessWidget {
   // This widget is the root of your application.
@@ -81,7 +83,7 @@ class Login extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15.0))),
                           ),
                           onPressed: () {
-                            Navigator.pushNamed(context, '/driverPage');
+                            Get.toNamed(Routes.driverPage);
                           },
                           child: const Text(
                             'Login',
