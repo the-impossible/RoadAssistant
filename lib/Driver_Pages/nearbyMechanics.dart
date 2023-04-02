@@ -27,25 +27,26 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
           itemBuilder: (context, index) {
             return Column(
               children: [
-                Padding(padding: EdgeInsets.only(top: 8.0)),
+                Padding(padding: EdgeInsets.only(top: 3.0)),
                 Card(
                   elevation: 6,
                   shadowColor: kDarkColor,
                   color: kWhiteColor,
                   child: SizedBox(
-                      height: 130,
-                      width: MediaQuery.of(context).size.width,
-                      child: Padding(
-                        padding: EdgeInsets.only(top: 30.0),
-                        child: ListTile(
-                          leading: Image.asset(
-                            'assets/images/profile.png',
-                          ),
-                          trailing: Icon(Icons.arrow_forward_ios_outlined),
-                          title: Text('Faisol Ademola'),
-                          subtitle: Text('Repair all kind of vehicles'),
+                    height: 100,
+                    width: MediaQuery.of(context).size.width,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 10.0),
+                      child: ListTile(
+                        leading: Image.asset(
+                          'assets/images/profile.png',
                         ),
-                      )),
+                        trailing: Icon(Icons.arrow_forward_ios_outlined),
+                        title: Text('Faisol Ademola'),
+                        subtitle: Text('Repair all kind of vehicles'),
+                      ),
+                    ),
+                  ),
 
                   // leading: Icons.,
                   // title: Text('Faisol Ademola'),
