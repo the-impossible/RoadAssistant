@@ -18,7 +18,7 @@ class _DriverHomeState extends State<DriverHome> {
       appBar: AppBar(
         title: const Text(
           'DASHBOARD',
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(fontWeight: FontWeight.bold, color: kDarkColor),
         ),
         centerTitle: true,
         // backgroundColor: kWhiteColor,
@@ -173,9 +173,12 @@ class _DriverHomeState extends State<DriverHome> {
               height: 30.0,
               thickness: 2.0,
             ),
-            const ListTile(
-              leading: Icon(Icons.task),
-              title: Text(
+            ListTile(
+              onTap: () {
+                Get.toNamed(Routes.taskPage);
+              },
+              leading: const Icon(Icons.task),
+              title: const Text(
                 'Task',
                 style: TextStyle(
                   fontSize: 20.0,

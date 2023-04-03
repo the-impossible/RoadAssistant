@@ -2,6 +2,7 @@ import 'package:get/get.dart';
 import 'package:welcome/Driver_Pages/drivProfile.dart';
 import 'package:welcome/Driver_Pages/homePage.dart';
 import 'package:welcome/Driver_Pages/nearbyMechanics.dart';
+import 'package:welcome/Driver_Pages/tasksPage.dart';
 import 'package:welcome/Intro/Pages/about_page.dart';
 import 'package:welcome/Intro/Pages/help_Page.dart';
 import 'package:welcome/Intro/intro.dart';
@@ -35,6 +36,7 @@ class Routes {
   static String nearbyMechanics = '/nearbyMechanics';
   static String driverProfile = '/driverProfile';
   static String helpPage = '/helpPage';
+  static String taskPage = '/taskPage';
 
   // MecHomePage
 }
@@ -107,5 +109,7 @@ final getPages = [
   GetPage(
     name: Routes.helpPage,
     page: () => const Help_Page(),
-  )
+  ),
+  GetPage(name: Routes.taskPage, 
+  page: () => const Task_Page()),
 ];

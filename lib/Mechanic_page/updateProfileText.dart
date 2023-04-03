@@ -12,7 +12,7 @@ class UpdateProfileText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 30.0, bottom: 20.0),
+      padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -20,11 +20,11 @@ class UpdateProfileText extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 1.0),
             child: const Divider(
               color: kDarkColor,
-              thickness: 3,
+              thickness: 1.5,
             ),
           ),
           Container(
-            padding: EdgeInsets.only(top: 50.0, bottom: 5.0),
+            padding: EdgeInsets.only(top: 20.0, bottom: 5.0),
             alignment: Alignment.bottomLeft,
             width: 500,
             // decoration: BoxDecoration(
@@ -102,19 +102,24 @@ class UpdateProfileText extends StatelessWidget {
           const Divider(
             thickness: 1.5,
           ),
-          Container(
-            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            child: TextButton(
-              onPressed: () {
-                Get.toNamed(Routes.login);
-              },
-              child: const Text(
-                "Logout",
-                style: kSubTextStyle,
-                textAlign: TextAlign.center,
-              ),
+          Padding(
+            padding: const EdgeInsets.only(top: 40.0),
+            child: Container(
+              height: 50,
+              width: 500,
+              child: ElevatedButton(
+                  onPressed: () {
+                    Get.toNamed(Routes.login);
+                  },
+                  child: const Text(
+                    'Log Out',
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontFamily: 'Schuyler',
+                    ),
+                  )),
             ),
-          ),
+          )
         ],
       ),
     );
