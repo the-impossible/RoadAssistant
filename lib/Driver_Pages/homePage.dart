@@ -45,7 +45,7 @@ class _DriverHomeState extends State<DriverHome> {
                       ),
                     ],
                   ),
-                  padding: EdgeInsets.only(top: 05.0, left: 10),
+                  padding: const EdgeInsets.only(top: 05.0, left: 10),
                   child: SingleChildScrollView(
                     child: Row(
                       // mainAxisAlignment: MainAxisAlignment.start,
@@ -67,7 +67,7 @@ class _DriverHomeState extends State<DriverHome> {
                           ),
                         ),
                         const SizedBox(
-                          width: 150,
+                          width: 200,
                         ),
                         const Icon(
                           Icons.notifications,
@@ -76,18 +76,6 @@ class _DriverHomeState extends State<DriverHome> {
                       ],
                     ),
                   ),
-                ),
-              ),
-              const SizedBox(
-                height: 20.0,
-              ),
-              Container(
-                child: inputField(
-                  const Icon(
-                    Icons.search,
-                  ),
-                  'search',
-                  obscure: false,
                 ),
               ),
               const SizedBox(
@@ -169,7 +157,8 @@ class _DriverHomeState extends State<DriverHome> {
             ),
             ListTile(
               onTap: () {
-                // Get.toNamed();
+                Navigator.pop(context);
+                Get.toNamed(Routes.nearbyMechanics);
               },
               leading: Icon(Icons.car_repair),
               title: const Text(

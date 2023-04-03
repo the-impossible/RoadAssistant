@@ -21,13 +21,13 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
         child: DefaultBackButton(),
       ),
       body: ListView.builder(
-          physics: ClampingScrollPhysics(),
+          physics: const ClampingScrollPhysics(),
           padding: EdgeInsets.zero,
           itemCount: 4,
           itemBuilder: (context, index) {
             return Column(
               children: [
-                Padding(padding: EdgeInsets.only(top: 3.0)),
+                const Padding(padding: EdgeInsets.only(top: 3.0)),
                 Card(
                   elevation: 6,
                   shadowColor: kDarkColor,
@@ -36,28 +36,23 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
                     height: 100,
                     width: MediaQuery.of(context).size.width,
                     child: Padding(
-                      padding: EdgeInsets.only(top: 10.0),
+                      padding: const EdgeInsets.only(top: 10.0),
                       child: ListTile(
                         leading: Image.asset(
                           'assets/images/profile.png',
                         ),
-                        trailing: Icon(Icons.arrow_forward_ios_outlined),
-                        title: Text('Faisol Ademola'),
-                        subtitle: Text('Repair all kind of vehicles'),
+                        trailing: const Icon(Icons.arrow_forward_ios_outlined),
+                        title: const Text('Faisol Ademola'),
+                        subtitle: const Text('Repair all kind of vehicles'),
                       ),
                     ),
                   ),
 
-                  // leading: Icons.,
-                  // title: Text('Faisol Ademola'),
-                  // subtitle: Text('Repair all kind of vehicles'),
-                  // enabled: true,
-                  // onTap: () => Navigator.of(context).push(MaterialPageRoute(
-                  //     builder: (context) => Nearby_Mechanic())),
+                  //
                 ),
               ],
             );
-          }),
+          },),
     );
   }
 }
