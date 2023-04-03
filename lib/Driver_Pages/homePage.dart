@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:welcome/constant.dart';
-import 'package:welcome/inputField.dart';
 
 import '../routes/routes.dart';
 
@@ -189,9 +188,13 @@ class _DriverHomeState extends State<DriverHome> {
               thickness: 2.0,
               height: 30.0,
             ),
-            const ListTile(
+            ListTile(
+              onTap: () {
+                Navigator.pop(context);
+                Get.toNamed(Routes.driverProfile);
+              },
               leading: Icon(Icons.person),
-              title: Text(
+              title: const Text(
                 'Profile',
                 style: TextStyle(
                   fontSize: 20.0,
@@ -204,9 +207,12 @@ class _DriverHomeState extends State<DriverHome> {
               thickness: 2.0,
               height: 30.0,
             ),
-            const ListTile(
+            ListTile(
+              onTap: () {
+                Get.toNamed(Routes.login);
+              },
               leading: Icon(Icons.logout),
-              title: Text(
+              title: const Text(
                 'Logout',
                 style: TextStyle(
                   fontSize: 20.0,

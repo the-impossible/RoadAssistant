@@ -20,18 +20,23 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
         title: 'Nearby Mechanics',
         child: DefaultBackButton(),
       ),
-      body: ListView.builder(
+      body: Padding(
+        padding: const EdgeInsets.only(right: 10.0, left: 10.0, top: 10.0),
+        child: ListView.builder(
           physics: const ClampingScrollPhysics(),
           padding: EdgeInsets.zero,
           itemCount: 4,
           itemBuilder: (context, index) {
             return Column(
               children: [
-                const Padding(padding: EdgeInsets.only(top: 3.0)),
+                const Padding(
+                    padding: EdgeInsets.only(
+                  top: 3.0,
+                )),
                 Card(
                   elevation: 6,
                   shadowColor: kDarkColor,
-                  color: kWhiteColor,
+                  color: kLightPinkColor,
                   child: SizedBox(
                     height: 100,
                     width: MediaQuery.of(context).size.width,
@@ -52,7 +57,9 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
                 ),
               ],
             );
-          },),
+          },
+        ),
+      ),
     );
   }
 }

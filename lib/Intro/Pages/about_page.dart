@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:welcome/Mechanic_page/component/defaultAppBar.dart';
+import 'package:welcome/Mechanic_page/component/defaultBackButton.dart';
 import 'package:welcome/constant.dart';
 
 class AboutPage extends StatelessWidget {
@@ -8,23 +10,9 @@ class AboutPage extends StatelessWidget {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'About US'.toUpperCase(),
-          style: const TextStyle(
-            color: kDarkColor,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: kGroundColor,
-        automaticallyImplyLeading: false,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back_ios_new,
-            color: kPrimaryColor,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
+      appBar: const DefaultAppBar(
+        title: 'About Page',
+        child: DefaultBackButton(),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,

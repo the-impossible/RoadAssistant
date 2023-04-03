@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 const kPrimaryColor = Color(0xFFFF8084);
+const kLightPinkColor = Color.fromRGBO(243, 232, 232, 1);
 const kAccenstColor = Color(0xFFF1F1F1);
 const kWhiteColor = Color(0xFFFFFFFF);
 const kLightColor = Color(0xFF808080);
