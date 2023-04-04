@@ -12,7 +12,7 @@ class UpdateProfileText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+      padding: const EdgeInsets.only(top: 20.0, bottom: 20.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -23,79 +23,82 @@ class UpdateProfileText extends StatelessWidget {
               thickness: 1.5,
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(top: 20.0, bottom: 5.0),
-            alignment: Alignment.bottomLeft,
-            width: 500,
-            // decoration: BoxDecoration(
-            // border: Border.all(color: kDarkColor),
-            // ),
-            child: TextButton(
-              onPressed: () {
-                Get.toNamed(Routes.updatePage);
-              },
-              child: const Text(
-                "Edit Profile",
-                style: kSubTextStyle,
-                textAlign: TextAlign.left,
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.updatePage);
+            },
+            child: Container(
+              padding: const EdgeInsets.only(top: 30.0, bottom: 10.0),
+              alignment: Alignment.bottomLeft,
+              width: 500,
+              child: const ListTile(
+                trailing: Icon(Icons.arrow_forward_ios),
+                title: Text(
+                  "Edit Profile",
+                  style: kSubTextStyle,
+                  textAlign: TextAlign.left,
+                ),
               ),
             ),
           ),
           const Divider(
             thickness: 1.5,
           ),
-          Container(
-            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            alignment: Alignment.bottomLeft,
-            width: 500,
-            // decoration: BoxDecoration(
-            //     border: Border.all(color: kDarkColor),
-            //     shape: BoxShape.rectangle),
-            child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '');
-              },
-              child: const Text(
-                "Setting",
-                style: kSubTextStyle,
-                textAlign: TextAlign.left,
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.mecProfilePage);
+            },
+            child: Container(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 10.0),
+              alignment: Alignment.bottomLeft,
+              width: 500,
+              child: const ListTile(
+                trailing: Icon(Icons.arrow_forward_ios),
+                title: Text(
+                  "Setting",
+                  style: kSubTextStyle,
+                  textAlign: TextAlign.left,
+                ),
               ),
             ),
           ),
           const Divider(
             thickness: 1.5,
           ),
-          Container(
-            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            child: TextButton(
-              onPressed: () {
-                Get.toNamed(Routes.aboutPage);
-              },
-              child: const Text(
-                "About Us",
-                style: kSubTextStyle,
-                textAlign: TextAlign.left,
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.aboutPage);
+            },
+            child: Container(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 10.0),
+              child: const ListTile(
+                trailing: Icon(Icons.arrow_forward_ios),
+                title: Text(
+                  "About Us",
+                  style: kSubTextStyle,
+                  textAlign: TextAlign.left,
+                ),
               ),
             ),
           ),
           const Divider(
             thickness: 1.5,
           ),
-          Container(
-            padding: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            alignment: Alignment.bottomLeft,
-            width: 500,
-            // decoration: BoxDecoration(
-            //   border: Border.all(color: kDarkColor),
-            // ),
-            child: TextButton(
-              onPressed: () {
-                Navigator.pushNamed(context, '');
-              },
-              child: const Text(
-                "Help Center",
-                style: kSubTextStyle,
-                textAlign: TextAlign.left,
+          InkWell(
+            onTap: () {
+              Get.toNamed(Routes.helpPage);
+            },
+            child: Container(
+              padding: const EdgeInsets.only(top: 15.0, bottom: 10.0),
+              alignment: Alignment.bottomLeft,
+              width: 500,
+              child: const ListTile(
+                trailing: Icon(Icons.arrow_forward_ios),
+                title: Text(
+                  "Help Center",
+                  style: kSubTextStyle,
+                  textAlign: TextAlign.left,
+                ),
               ),
             ),
           ),

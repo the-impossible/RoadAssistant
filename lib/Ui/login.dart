@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15.0))),
                           ),
                           onPressed: () {
-                            Get.toNamed(Routes.mecProfilePage);
+                            Get.toNamed(Routes.driverPage);
                           },
                           child: const Text(
                             'Login',

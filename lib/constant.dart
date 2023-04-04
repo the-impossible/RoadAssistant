@@ -51,6 +51,9 @@ const String bg = 'assets/images/bg.svg';
 const String FFF = 'assets/images/FFF.svg';
 const String landing = 'assets/images/landingimg.jpeg';
 const String Splash = 'assets/images/Logo.svg';
+const String WhatsApp = 'assets/images/whatsapp.jpg';
+const String telegram = 'assets/images/telegram.png';
+const String facebook = 'assets/images/facebook.png';
 
 List<Map<String, String>> introData = [
   {
