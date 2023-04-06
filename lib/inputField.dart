@@ -18,7 +18,7 @@ class inputField extends StatelessWidget {
           child: Material(
             child: Container(
               width: MediaQuery.of(context).size.width,
-              // height: 20,
+              height: 20,
               child: Padding(
                 padding: const EdgeInsets.all(05.0),
                 child: TextField(

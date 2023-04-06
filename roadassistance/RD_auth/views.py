@@ -10,7 +10,7 @@ from RD_auth.serializer import (
 )
 
 # Create your views here.
-class RegisterView(generics.CreateAPIView):
+class RegisterView(generics.CreateAPIView): 
 
     """This View create an account for the user"""
     serializer_class = RegisterSerializer
