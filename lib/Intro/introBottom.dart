@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 // import 'package:welcome/Intro/Pages/landingPage.dart';
 import 'package:welcome/Intro/clearDefaultButton.dart';
 import 'package:welcome/constant.dart';
+
+import '../routes/routes.dart';
 
 class introBottom extends StatelessWidget {
   const introBottom({
@@ -23,26 +26,26 @@ class introBottom extends StatelessWidget {
               ? Padding(
                   padding: const EdgeInsets.only(right: 10),
                   child: TextButton(
-                      onPressed: () {
-                        Navigator.pushNamed(context, '/landing');
-                      },
-                      child: const Text(
-                        "SKIP",
-                        style: TextStyle(color: kShow),
-                      )),
+                    onPressed: () {
+                      Get.toNamed(Routes.landing);
+                    },
+                    child: const Text(
+                      "SKIP",
+                      style: TextStyle(fontFamily: 'Schyuler', color: kShow),
+                    ),
+                  ),
                 )
-             
               : ClearDefaultButton(
                   name: '',
                   press: () {},
                 ),
           Container(
             width: MediaQuery.of(context).size.width - 150,
-            padding: EdgeInsets.symmetric(vertical: kDefaultPadding),
+            padding: const EdgeInsets.symmetric(vertical: kDefaultPadding),
             child: LinearProgressIndicator(
               backgroundColor: kWhiteColor,
               value: (_currentPage + 1) / (introData.length + 0),
-              valueColor: AlwaysStoppedAnimation<Color>(kDarkColor),
+              valueColor: const AlwaysStoppedAnimation<Color>(kDarkColor),
             ),
           ),
           (_currentPage == 2)
@@ -50,11 +53,14 @@ class introBottom extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 10),
                   child: TextButton(
                     onPressed: () {
-                      Navigator.pushNamed(context, '/landing');
+                      Get.toNamed(Routes.landing);
                     },
                     child: const Text(
                       "DONE",
-                      style: TextStyle(color: kShow),
+                      style: TextStyle(
+                        fontFamily: 'Schyuler',
+                        color: kShow,
+                      ),
                     ),
                   ),
                 )

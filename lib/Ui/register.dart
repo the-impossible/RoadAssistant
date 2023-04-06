@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/constant.dart';
 import 'package:welcome/inputField.dart';
+
+import '../routes/routes.dart';
 
 class registerPage extends StatefulWidget {
   const registerPage({super.key});
@@ -14,11 +17,6 @@ class _registerPageState extends State<registerPage> {
   Widget build(BuildContext context) {
     var dropdownValue;
     return Scaffold(
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: false,
-      //   backgroundColor: kWhiteColor,
-      //   elevation: 02,
-      // ),
       backgroundColor: Colors.white,
       body: Padding(
         padding: const EdgeInsets.only(left: 10.0, right: 10.0),
@@ -38,6 +36,7 @@ class _registerPageState extends State<registerPage> {
                         color: Colors.blue,
                         fontSize: 30.0,
                         fontWeight: FontWeight.bold,
+                        fontFamily: 'Schyuler',
                       ),
                     ),
                   ),
@@ -51,7 +50,7 @@ class _registerPageState extends State<registerPage> {
                   ),
                   inputField(
                     const Icon(Icons.person_outline, color: Colors.black),
-                    'User Name',
+                    'Email',
                     obscure: false,
                   ),
                   inputField(
@@ -75,12 +74,12 @@ class _registerPageState extends State<registerPage> {
                       decoration: InputDecoration(
                         border: UnderlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(20.0)),
+                            borderRadius: BorderRadius.circular(10.0)),
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide.none,
-                            borderRadius: BorderRadius.circular(20.0)),
+                            borderRadius: BorderRadius.circular(10.0)),
                         focusedBorder: UnderlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0)),
+                            borderRadius: BorderRadius.circular(10.0)),
                         fillColor: const Color.fromARGB(255, 218, 212, 212),
                         filled: true,
                         labelStyle: TextStyle(color: kPrimaryColor),
@@ -125,13 +124,13 @@ class _registerPageState extends State<registerPage> {
                             borderRadius: BorderRadius.circular(10.0))),
                       ),
                       onPressed: () {
-                        Navigator.pushNamed(context, '/login');
+                        Get.toNamed(Routes.login);
                       },
                       child: const Text(
                         'Sign Up',
                         style: TextStyle(
                           fontSize: 25.0,
-                          fontFamily: 'Times New Roman',
+                          fontFamily: 'Schyuler',
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -142,7 +141,7 @@ class _registerPageState extends State<registerPage> {
                   ),
                   InkWell(
                     onTap: () {
-                      Navigator.pushNamed(context, '/login');
+                      Get.toNamed(Routes.login);
                     },
                     child: const Text.rich(
                       TextSpan(
@@ -150,14 +149,13 @@ class _registerPageState extends State<registerPage> {
                           TextSpan(
                               text: 'Already have account?',
                               style: TextStyle(
-                                fontSize: 20.0,
-                              )),
+                                  fontSize: 20.0, fontFamily: 'Schyuler')),
                           TextSpan(
                             text: 'Login',
                             style: TextStyle(
                               fontSize: 23.0,
                               color: Colors.blue,
-                              fontFamily: 'Times New Roman',
+                              fontFamily: 'Schyuler',
                             ),
                           ),
                         ],

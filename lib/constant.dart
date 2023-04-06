@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 
 const kPrimaryColor = Color(0xFFFF8084);
@@ -54,6 +56,7 @@ const String Splash = 'assets/images/Logo.svg';
 const String WhatsApp = 'assets/images/whatsapp.jpg';
 const String telegram = 'assets/images/telegram.png';
 const String facebook = 'assets/images/facebook.png';
+
 
 List<Map<String, String>> introData = [
   {

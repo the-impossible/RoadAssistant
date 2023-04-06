@@ -88,7 +88,7 @@ class Login extends StatelessWidget {
                           child: const Text(
                             'Login',
                             style: TextStyle(
-                                fontSize: 30.0, fontFamily: 'Times New Roman'),
+                                fontSize: 30.0, fontFamily: 'Schyuler'),
                           ),
                         ),
                       ),
@@ -98,6 +98,7 @@ class Login extends StatelessWidget {
                             style: TextStyle(
                               color: Colors.blue,
                               fontSize: 17.0,
+                              fontFamily: 'Schyuler'
                             )),
                       ),
                       InkWell(
@@ -111,11 +112,13 @@ class Login extends StatelessWidget {
                                   text: 'Not a member?',
                                   style: TextStyle(
                                     fontSize: 17.0,
+                                    fontFamily: 'Schyuler'
                                   )),
                               TextSpan(
                                 text: 'Sign Up',
                                 style: TextStyle(
                                   fontSize: 19.0,
+                                  fontFamily: 'Schyuler',
                                   color: Colors.blue,
                                 ),
                               ),

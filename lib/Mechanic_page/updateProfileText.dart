@@ -35,6 +35,7 @@ class UpdateProfileText extends StatelessWidget {
                 trailing: Icon(Icons.arrow_forward_ios),
                 title: Text(
                   "Edit Profile",
+                  
                   style: kSubTextStyle,
                   textAlign: TextAlign.left,
                 ),

@@ -39,7 +39,7 @@ class _NotificationPageState extends State<NotificationPage> {
                     'Notification',
                     textAlign: TextAlign.start,
                     style: TextStyle(
-                      fontFamily: 'Times New Roman',
+                      fontFamily: 'Schyuler',
                       fontStyle: FontStyle.normal,
                       fontWeight: FontWeight.bold,
                       fontSize: 35,

@@ -11,20 +11,19 @@ class inputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+      padding: const EdgeInsets.only(left: 05.0, right: 05.0),
       child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 65,
+          height: 60,
           child: Material(
             child: Container(
               width: MediaQuery.of(context).size.width,
-              height: 20,
               child: Padding(
                 padding: const EdgeInsets.all(05.0),
                 child: TextField(
                   obscureText: obscure,
                   decoration: InputDecoration(
-                    labelStyle: TextStyle(color: kAccenstColor),
+                    labelStyle: const TextStyle(color: kAccenstColor),
                     prefixIcon: fieldIcon,
                     border: UnderlineInputBorder(
                         borderSide: BorderSide.none,
@@ -49,9 +48,7 @@ class inputField extends StatelessWidget {
                 ),
               ),
             ),
-          )
-          // ],
-          ),
+          )),
     );
   }
 }

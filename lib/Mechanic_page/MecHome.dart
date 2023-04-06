@@ -97,6 +97,7 @@ class _MecHomePageState extends State<MecHomePage> {
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                             color: kFriendlyColor,
+                            fontFamily: 'Schyuler'
                           ),
                         ),
                         Image.asset(
@@ -116,7 +117,7 @@ class _MecHomePageState extends State<MecHomePage> {
               height: 500,
               margin: const EdgeInsets.only(
                   top: 20.0, right: 15.0, left: 15.0, bottom: 15.0),
-              padding: EdgeInsets.all(kFixedPadding),
+              padding: const EdgeInsets.all(kFixedPadding),
               decoration: BoxDecoration(
                 color: kWhiteColor,
                 shape: BoxShape.rectangle,
@@ -131,13 +132,13 @@ class _MecHomePageState extends State<MecHomePage> {
                 child: Column(
                   children: [
                     Container(
-                      padding: EdgeInsets.only(top: 40.0),
+                      padding: const EdgeInsets.only(top: 40.0),
                       width: 450,
                       height: 120,
                       child: OutlinedButton(
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(vertical: kLessPadding),
+                            const EdgeInsets.symmetric(vertical: kLessPadding),
                           ),
                           side: MaterialStateProperty.all(
                             const BorderSide(
@@ -163,13 +164,13 @@ class _MecHomePageState extends State<MecHomePage> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 30.0),
+                      padding: const EdgeInsets.only(top: 30.0),
                       width: 450,
                       height: 100,
                       child: OutlinedButton(
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(vertical: kLessPadding),
+                            const EdgeInsets.symmetric(vertical: kLessPadding),
                           ),
                           side: MaterialStateProperty.all(
                             const BorderSide(
@@ -195,13 +196,13 @@ class _MecHomePageState extends State<MecHomePage> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 30.0),
+                      padding: const EdgeInsets.only(top: 30.0),
                       width: 450,
                       height: 100,
                       child: OutlinedButton(
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(vertical: kLessPadding),
+                           const EdgeInsets.symmetric(vertical: kLessPadding),
                           ),
                           side: MaterialStateProperty.all(
                             const BorderSide(
@@ -227,13 +228,13 @@ class _MecHomePageState extends State<MecHomePage> {
                       ),
                     ),
                     Container(
-                      padding: EdgeInsets.only(top: 30.0),
+                      padding: const EdgeInsets.only(top: 30.0),
                       width: 450,
                       height: 100,
                       child: OutlinedButton(
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                            EdgeInsets.symmetric(vertical: kLessPadding),
+                           const EdgeInsets.symmetric(vertical: kLessPadding),
                           ),
                           side: MaterialStateProperty.all(
                             const BorderSide(

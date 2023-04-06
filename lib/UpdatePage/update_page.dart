@@ -33,14 +33,14 @@ class _Update_PageState extends State<Update_Page> {
                     'Update Data'.toUpperCase(),
                     style: const TextStyle(
                         fontSize: 20.0,
-                        fontFamily: 'times new roman',
+                        fontFamily: 'Schyuler',
                         fontWeight: FontWeight.bold,
                         fontStyle: FontStyle.italic),
                   ),
                 ),
                 inputField(
                   const Icon(Icons.person, color: Colors.black),
-                  'Ful_Name',
+                  'Ful_Name', 
                   obscure: false,
                 ),
                 inputField(
@@ -63,9 +63,10 @@ class _Update_PageState extends State<Update_Page> {
                   height: 50,
                   child: ElevatedButton(
                     child: Text(
-                      'Update'.toUpperCase(),
+                      'UPDATE',
                       style: TextStyle(
                           fontSize: 17,
+                          fontFamily: 'Schyuler',
                           fontWeight: FontWeight.bold,
                           color: kDarkColor),
                     ),

@@ -36,6 +36,7 @@ class Mec_profilePage extends StatelessWidget {
                       'MECID:',
                       style: TextStyle(
                         fontSize: 20,
+                        fontFamily: 'Schyuler'
                       ),
                     ),
                     SizedBox(height: 10.0),
@@ -43,6 +44,7 @@ class Mec_profilePage extends StatelessWidget {
                       'NAME:',
                       style: TextStyle(
                         fontSize: 20,
+                        fontFamily: 'Schyuler'
                       ),
                     ),
                   ],

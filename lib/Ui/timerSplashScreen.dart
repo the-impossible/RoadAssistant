@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:welcome/Intro/intro.dart';
 import 'package:welcome/constant.dart';
 
 import '../routes/routes.dart';
@@ -21,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
 
     Timer(
-      Duration(seconds: 5),
+      Duration(seconds: 2),
       () => Get.offNamed(Routes.intro),
     );
   }

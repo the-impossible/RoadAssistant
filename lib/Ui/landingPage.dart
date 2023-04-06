@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:welcome/Intro/components/bottomButton.dart';
-import 'package:welcome/Intro/components/centerTagLine.dart';
-import 'package:welcome/Intro/components/topLanding.dart';
 import 'package:welcome/constant.dart';
 import 'package:welcome/routes/routes.dart';
 
@@ -31,7 +28,10 @@ class _LandingState extends State<Landing> {
             const SizedBox(height: 100),
             const Text(
               'Get Mechanics',
-              style: TextStyle(color: kShow),
+              style: TextStyle(
+                color: kShow,
+                fontFamily: 'Schyuler',
+              ),
             ),
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 100.0),
@@ -42,9 +42,7 @@ class _LandingState extends State<Landing> {
             ),
             const Text(
               'Lets get you mechanic to solve your issue in sec',
-              style: TextStyle(
-                color: kPrimaryColor,
-              ),
+              style: TextStyle(color: kPrimaryColor, fontFamily: 'Schyuler'),
             ),
             const SizedBox(height: 100),
             OutlineDefaultButton(
