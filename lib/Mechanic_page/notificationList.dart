@@ -30,15 +30,11 @@ class _NotificationListState extends State<NotificationList> {
                   title: 'COMMENT',
                   subtitle: 'Your customer just send you feedback',
                   enabled: true,
-                  onTap: () => Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => NotificationPage(),
-                    ),
-                  ),
+                  onTap: () {},
                   leadingIcon: Icons.notification_important_outlined,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
                 ),
-              const Divider()
+                const Divider()
               ],
             );
           },

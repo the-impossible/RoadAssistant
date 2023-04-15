@@ -79,7 +79,7 @@ class _RequestStatusPAGEState extends State<RequestStatusPAGE> {
                         onPressed: () {},
                         style: ButtonStyle(
                           backgroundColor:
-                              MaterialStateProperty.all(kGreyColor),
+                              MaterialStateProperty.all(kOrangeColor),
                           shape: MaterialStateProperty.all(
                               RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(10.0))),
@@ -102,7 +102,8 @@ class _RequestStatusPAGEState extends State<RequestStatusPAGE> {
                     child: ElevatedButton(
                       onPressed: () {},
                       style: ButtonStyle(
-                        backgroundColor: MaterialStateProperty.all(kGreyColor),
+                        backgroundColor:
+                            MaterialStateProperty.all(kOrangeColor),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10.0))),
                       ),

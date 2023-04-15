@@ -12,6 +12,7 @@ const kTransparentColor = Colors.transparent;
 const kShow = Color.fromARGB(255, 248, 19, 3);
 const kFriendlyColor = Colors.blue;
 const kGreyColor = Color.fromARGB(255, 236, 235, 235);
+const kOrangeColor = Colors.orange;
 // const kNotWhiteColor = Color.fromARGB(255, 248, 236, 236);
 
 const kDefaultPadding = 20.0;

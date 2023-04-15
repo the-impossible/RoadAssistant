@@ -25,8 +25,8 @@ class _DriverHomeState extends State<DriverHome> {
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: kWhiteColor,
-          padding: EdgeInsets.only(top: 19.0, left: 10.0, right: 10.0),
+          color: kGreyColor,
+          padding: const EdgeInsets.only(top: 19.0, left: 10.0, right: 10.0),
           child: Column(
             children: [
               SingleChildScrollView(
@@ -62,8 +62,9 @@ class _DriverHomeState extends State<DriverHome> {
                         const Text(
                           'BeeJAY',
                           style: TextStyle(
-                            fontSize: 15,
-                          ),
+                              fontSize: 20,
+                              fontFamily: 'Schyuler',
+                              fontWeight: FontWeight.bold),
                         ),
                         const SizedBox(
                           width: 200,
@@ -113,10 +114,10 @@ class _DriverHomeState extends State<DriverHome> {
           reverse: false,
           children: [
             DrawerHeader(
-              margin: EdgeInsets.only(bottom: 20),
-              padding: EdgeInsets.all(0),
+              margin: const EdgeInsets.only(bottom: 20),
+              padding: const EdgeInsets.all(0),
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 color: Colors.blueAccent,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -145,7 +146,7 @@ class _DriverHomeState extends State<DriverHome> {
                 'Dashboard',
                 style: TextStyle(
                   fontSize: 20.0,
-                  fontFamily: 'Times New Roman',
+                  fontFamily: 'Schyuler',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -164,7 +165,7 @@ class _DriverHomeState extends State<DriverHome> {
                 'Nearby Mechanics',
                 style: TextStyle(
                   fontSize: 20.0,
-                  fontFamily: 'Times New Roman',
+                  fontFamily: 'Schyuler',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -182,7 +183,7 @@ class _DriverHomeState extends State<DriverHome> {
                 'Task',
                 style: TextStyle(
                   fontSize: 20.0,
-                  fontFamily: 'Times New Roman',
+                  fontFamily: 'Schyuler',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -196,12 +197,12 @@ class _DriverHomeState extends State<DriverHome> {
                 Navigator.pop(context);
                 Get.toNamed(Routes.driverProfile);
               },
-              leading: Icon(Icons.person),
+              leading: const Icon(Icons.person),
               title: const Text(
                 'Profile',
                 style: TextStyle(
                   fontSize: 20.0,
-                  fontFamily: 'Times New Roman',
+                  fontFamily: 'Schyuler',
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -214,12 +215,12 @@ class _DriverHomeState extends State<DriverHome> {
               onTap: () {
                 Get.toNamed(Routes.login);
               },
-              leading: Icon(Icons.logout),
+              leading: const Icon(Icons.logout),
               title: const Text(
                 'Logout',
                 style: TextStyle(
                   fontSize: 20.0,
-                  fontFamily: 'Times New Roman',
+                  fontFamily: 'Schyuler',
                   fontWeight: FontWeight.bold,
                 ),
               ),

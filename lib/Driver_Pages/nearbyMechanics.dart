@@ -30,9 +30,10 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
             return Column(
               children: [
                 const Padding(
-                    padding: EdgeInsets.only(
-                  top: 3.0,
-                )),
+                  padding: EdgeInsets.only(
+                    top: 3.0,
+                  ),
+                ),
                 Card(
                   elevation: 6,
                   shadowColor: kDarkColor,
@@ -47,8 +48,24 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
                           'assets/images/profile.png',
                         ),
                         trailing: const Icon(Icons.arrow_forward_ios_outlined),
-                        title: const Text('Faisol Ademola'),
-                        subtitle: const Text('Repair all kind of vehicles'),
+                        title: const Text(
+                          'Faisol Ademola',
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                            color: kDarkColor,
+                            fontFamily: 'Schyuler',
+                          ),
+                        ),
+                        subtitle: const Text(
+                          'Repair all kind of vehicles',
+                          style: TextStyle(
+                            fontFamily: 'Schyuler',
+                            fontStyle: FontStyle.italic,
+                            color: kLightColor,
+                            fontSize: 15,
+                          ),
+                        ),
                       ),
                     ),
                   ),

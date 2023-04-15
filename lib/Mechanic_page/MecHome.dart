@@ -38,7 +38,11 @@ class _MecHomePageState extends State<MecHomePage> {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(8.0),
                       boxShadow: const [
-                        BoxShadow(color: kShow),
+                        BoxShadow(
+                          color: kShow,
+                          blurRadius: 5,
+                          offset: Offset(0, 1),
+                        ),
                       ],
                     ),
                     padding: const EdgeInsets.only(
@@ -85,7 +89,11 @@ class _MecHomePageState extends State<MecHomePage> {
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.circular(kRadius),
                       boxShadow: const [
-                        BoxShadow(color: kLightColor, blurRadius: 3.0),
+                        BoxShadow(
+                            color: kLightColor,
+                            blurRadius: 3.0,
+                            spreadRadius: 2,
+                            offset: Offset(0, 2)),
                       ],
                     ),
                     child: Row(
@@ -94,11 +102,10 @@ class _MecHomePageState extends State<MecHomePage> {
                         const Text(
                           'BeeJay',
                           style: TextStyle(
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            color: kFriendlyColor,
-                            fontFamily: 'Schyuler'
-                          ),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              color: kFriendlyColor,
+                              fontFamily: 'Schyuler'),
                         ),
                         Image.asset(
                           'assets/images/profile.png',
@@ -123,7 +130,12 @@ class _MecHomePageState extends State<MecHomePage> {
                 shape: BoxShape.rectangle,
                 borderRadius: BorderRadius.circular(kRadius),
                 boxShadow: const [
-                  BoxShadow(color: kLightColor, blurRadius: 3.0),
+                  BoxShadow(
+                    color: kDarkColor,
+                    blurRadius: 5,
+                    spreadRadius: 4,
+                    offset: Offset(0, 1),
+                  ),
                 ],
               ),
               child: Container(
@@ -202,7 +214,7 @@ class _MecHomePageState extends State<MecHomePage> {
                       child: OutlinedButton(
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                           const EdgeInsets.symmetric(vertical: kLessPadding),
+                            const EdgeInsets.symmetric(vertical: kLessPadding),
                           ),
                           side: MaterialStateProperty.all(
                             const BorderSide(
@@ -234,7 +246,7 @@ class _MecHomePageState extends State<MecHomePage> {
                       child: OutlinedButton(
                         style: ButtonStyle(
                           padding: MaterialStateProperty.all(
-                           const EdgeInsets.symmetric(vertical: kLessPadding),
+                            const EdgeInsets.symmetric(vertical: kLessPadding),
                           ),
                           side: MaterialStateProperty.all(
                             const BorderSide(

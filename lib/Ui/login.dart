@@ -83,7 +83,7 @@ class Login extends StatelessWidget {
                                     borderRadius: BorderRadius.circular(15.0))),
                           ),
                           onPressed: () {
-                            Get.toNamed(Routes.bottomNavBar);
+                            Get.toNamed(Routes.driverPage);
                           },
                           child: const Text(
                             'Login',
@@ -96,10 +96,9 @@ class Login extends StatelessWidget {
                         onTap: (() {}),
                         child: const Text('Forget password?',
                             style: TextStyle(
-                              color: Colors.blue,
-                              fontSize: 17.0,
-                              fontFamily: 'Schyuler'
-                            )),
+                                color: Colors.blue,
+                                fontSize: 17.0,
+                                fontFamily: 'Schyuler')),
                       ),
                       InkWell(
                         onTap: () {
@@ -111,9 +110,7 @@ class Login extends StatelessWidget {
                               TextSpan(
                                   text: 'Not a member?',
                                   style: TextStyle(
-                                    fontSize: 17.0,
-                                    fontFamily: 'Schyuler'
-                                  )),
+                                      fontSize: 17.0, fontFamily: 'Schyuler')),
                               TextSpan(
                                 text: 'Sign Up',
                                 style: TextStyle(
