@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/Mechanic_page/component/defaultAppBar.dart';
 import 'package:welcome/Mechanic_page/component/defaultBackButton.dart';
 import 'package:welcome/constant.dart';
+
+import '../routes/routes.dart';
 
 class RequestPage extends StatefulWidget {
   const RequestPage({super.key});
@@ -24,8 +27,8 @@ class _RequestPageState extends State<RequestPage> {
         itemCount: 10,
         itemBuilder: (context, index) {
           return ListTile(
-            leading: Icon(Icons.notifications_active_outlined),
-            trailing: Icon(Icons.arrow_forward_ios),
+            leading: const Icon(Icons.notifications_active_outlined),
+            trailing:const  Icon(Icons.arrow_forward_ios),
             title: const Text(
               'New Request',
               style: TextStyle(color: kDarkColor),
@@ -34,7 +37,9 @@ class _RequestPageState extends State<RequestPage> {
               'Thanks for using this app your assistance is needed',
               style: TextStyle(color: kLightColor),
             ),
-            onTap: () {},
+            onTap: () {
+              Get.toNamed(Routes.requestPageStatus);
+            },
             enabled: true,
           );
         },

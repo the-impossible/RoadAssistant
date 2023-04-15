@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 
 const kPrimaryColor = Color(0xFFFF8084);
@@ -13,6 +11,7 @@ const KHeadColor = Colors.pink;
 const kTransparentColor = Colors.transparent;
 const kShow = Color.fromARGB(255, 248, 19, 3);
 const kFriendlyColor = Colors.blue;
+const kGreyColor = Color.fromARGB(255, 236, 235, 235);
 // const kNotWhiteColor = Color.fromARGB(255, 248, 236, 236);
 
 const kDefaultPadding = 20.0;
@@ -56,7 +55,6 @@ const String Splash = 'assets/images/Logo.svg';
 const String WhatsApp = 'assets/images/whatsapp.jpg';
 const String telegram = 'assets/images/telegram.png';
 const String facebook = 'assets/images/facebook.png';
-
 
 List<Map<String, String>> introData = [
   {

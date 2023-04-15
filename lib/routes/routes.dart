@@ -11,6 +11,7 @@ import 'package:welcome/Mechanic_page/mecProfile.dart';
 import 'package:welcome/Mechanic_page/notificationList.dart';
 import 'package:welcome/Mechanic_page/notification_page.dart';
 import 'package:welcome/Mechanic_page/request_page.dart';
+import 'package:welcome/Mechanic_page/request_status.dart';
 import 'package:welcome/Ui/landingPage.dart';
 import 'package:welcome/Ui/login.dart';
 import 'package:welcome/Ui/register.dart';
@@ -37,6 +38,7 @@ class Routes {
   static String driverProfile = '/driverProfile';
   static String helpPage = '/helpPage';
   static String taskPage = '/taskPage';
+  static String requestPageStatus = '/requestPageStatus';
 
   // MecHomePage
 }
@@ -110,6 +112,12 @@ final getPages = [
     name: Routes.helpPage,
     page: () => const Help_Page(),
   ),
-  GetPage(name: Routes.taskPage, 
-  page: () => const Task_Page()),
+  GetPage(
+    name: Routes.taskPage,
+    page: () => const Task_Page(),
+  ),
+  GetPage(
+    name: Routes.requestPageStatus,
+    page: () => const RequestStatusPAGE(),
+  ),
 ];
