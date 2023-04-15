@@ -38,7 +38,7 @@ class _NotificationListState extends State<NotificationList> {
                   leadingIcon: Icons.notification_important_outlined,
                   trailingIcon: Icons.arrow_forward_ios_outlined,
                 ),
-                const Divider()
+              const Divider()
               ],
             );
           },
