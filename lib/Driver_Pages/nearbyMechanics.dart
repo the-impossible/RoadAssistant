@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/Mechanic_page/component/defaultAppBar.dart';
 import 'package:welcome/Mechanic_page/component/defaultBackButton.dart';
 import 'package:welcome/constant.dart';
+
+import '../routes/routes.dart';
 
 class Nearby_Mechanic extends StatefulWidget {
   const Nearby_Mechanic({super.key});
@@ -44,6 +47,9 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
                     child: Padding(
                       padding: const EdgeInsets.only(top: 10.0),
                       child: ListTile(
+                        onTap: () {
+                          Get.toNamed(Routes.request_mechanic);
+                        },
                         leading: Image.asset(
                           'assets/images/profile.png',
                         ),
