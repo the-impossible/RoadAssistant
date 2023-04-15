@@ -48,8 +48,13 @@ class _Task_PageState extends State<Task_Page> {
                   onTap: () {
                     Get.toNamed(Routes.complete_taskPage);
                   },
-                  leading: Icon(Icons.notification_important_outlined),
-                  trailing: Icon(Icons.arrow_forward_ios_outlined,),
+                  leading: const Icon(
+                    Icons.notification_important_outlined,
+                    size: 35,
+                  ),
+                  trailing: const Icon(
+                    Icons.arrow_forward_ios_outlined,
+                  ),
                 ),
                 const Divider()
               ],
