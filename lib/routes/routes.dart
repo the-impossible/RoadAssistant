@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:welcome/Driver_Pages/complete_taskPage.dart';
 import 'package:welcome/Driver_Pages/drivProfile.dart';
 import 'package:welcome/Driver_Pages/homePage.dart';
 import 'package:welcome/Driver_Pages/nearbyMechanics.dart';
@@ -41,6 +42,7 @@ class Routes {
   static String taskPage = '/taskPage';
   static String requestPageStatus = '/requestPageStatus';
   static String request_mechanic = '/request_mechanic';
+  static String complete_taskPage = '/complete_taskPage';
 
   // MecHomePage
 }
@@ -125,5 +127,9 @@ final getPages = [
   GetPage(
     name: Routes.request_mechanic,
     page: () => const Request_Mechanic(),
+  ),
+  GetPage(
+    name: Routes.complete_taskPage,
+    page: () => const Complete_task(),
   )
 ];

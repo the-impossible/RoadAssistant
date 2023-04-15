@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/Mechanic_page/component/defaultAppBar.dart';
 import 'package:welcome/Mechanic_page/component/defaultBackButton.dart';
+import 'package:welcome/constant.dart';
+
+import '../routes/routes.dart';
 
 class Task_Page extends StatefulWidget {
   const Task_Page({super.key});
@@ -25,12 +29,27 @@ class _Task_PageState extends State<Task_Page> {
             return Column(
               children: [
                 ListTile(
-                  title: Text('REQUEST'),
-                  subtitle: Text('Your customer just send you feedback'),
+                  title: const Text(
+                    'REQUEST',
+                    style: TextStyle(
+                      fontFamily: 'Schyuler',
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20.0,
+                    ),
+                  ),
+                  subtitle: const Text(
+                    'view details',
+                    style: TextStyle(
+                      fontStyle: FontStyle.italic,
+                      color: kLightColor,
+                    ),
+                  ),
                   enabled: true,
-                  onTap: () {},
+                  onTap: () {
+                    Get.toNamed(Routes.complete_taskPage);
+                  },
                   leading: Icon(Icons.notification_important_outlined),
-                  trailing: Icon(Icons.arrow_forward_ios_outlined),
+                  trailing: Icon(Icons.arrow_forward_ios_outlined,),
                 ),
                 const Divider()
               ],

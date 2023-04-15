@@ -69,6 +69,7 @@ class _DriverHomeState extends State<DriverHome> {
                         const SizedBox(
                           width: 200,
                         ),
+                        
                         const Icon(
                           Icons.notifications,
                           size: 30,
