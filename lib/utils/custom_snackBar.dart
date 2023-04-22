@@ -1,19 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class CustomSnackBar extends StatelessWidget {
-  final String output;
-  bool isSuccess;
-
-  CustomSnackBar({
-    Key? key,
-    required this.output,
-    required this.isSuccess,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
+SnackBar customSnackBar(String output, bool isSuccess) {
+  return SnackBar(
+    behavior: SnackBarBehavior.floating,
+    backgroundColor: Colors.transparent,
+    elevation: 0,
+    content: Stack(
       children: [
         Container(
           height: 90,
@@ -64,6 +57,6 @@ class CustomSnackBar extends StatelessWidget {
           ),
         ),
       ],
-    );
-  }
+    ),
+  );
 }

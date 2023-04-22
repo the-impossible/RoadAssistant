@@ -1,5 +1,5 @@
 class APIEndPoints {
-  static const String baseURL = 'http://192.168.43.250:8000/';
+  static const String baseURL = 'http://192.168.96.219:8000/';
   static final AuthEndPoints authEndPoints = AuthEndPoints();
 }
 

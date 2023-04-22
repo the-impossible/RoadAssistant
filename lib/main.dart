@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:welcome/constant.dart';
+import 'package:welcome/utils/constant.dart';
 import 'package:get/get.dart';
 import 'package:welcome/routes/routes.dart';
 
