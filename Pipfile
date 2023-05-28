@@ -8,8 +8,8 @@ django = "*"
 djangorestframework = "*"
 pillow = "*"
 python-decouple = "*"
-django-cors-headers = "*"
 djangorestframework-simplejwt = "*"
+django-cors-headers = "*"
 
 [dev-packages]
 

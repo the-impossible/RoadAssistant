@@ -39,23 +39,23 @@ class _Update_PageState extends State<Update_Page> {
                   ),
                 ),
                 inputField(
-                  const Icon(Icons.person, color: Colors.black),
-                  'Ful_Name', 
+                  fieldIcon: const Icon(Icons.person, color: Colors.black),
+                  hintText: 'Ful_Name', 
                   obscure: false,
                 ),
                 inputField(
-                  Icon(Icons.person_outlined, color: Colors.black),
-                  'Business Name',
+                  fieldIcon: Icon(Icons.person_outlined, color: Colors.black),
+                  hintText: 'Business Name',
                   obscure: false,
                 ),
                 inputField(
-                  Icon(Icons.home_outlined, color: Colors.black),
-                  'Shop Address',
+                  fieldIcon: Icon(Icons.home_outlined, color: Colors.black),
+                  hintText: 'Shop Address',
                   obscure: false,
                 ),
                 inputField(
-                  Icon(Icons.phone_android, color: Colors.black),
-                  'Phone Nubeer',
+                  fieldIcon: Icon(Icons.phone_android, color: Colors.black),
+                  hintText: 'Phone Nubeer',
                   obscure: false,
                 ),
                 Container(

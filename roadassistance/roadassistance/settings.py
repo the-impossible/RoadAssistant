@@ -19,7 +19,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 STATIC_DIR = os.path.join(BASE_DIR, 'Static')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Static')
-                          
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
@@ -27,11 +27,11 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'Static')
 SECRET_KEY = config('SECRET_KEY')
 
 
-# SECURITY WARNING: don't run with debug turned on in production!
+# SECURITY WARNING: don't run with debug ]turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.43.250", "127.0.0.1", "192.168.96.219", "192.168.43.34"]
-
+ALLOWED_HOSTS = ["127.0.0.1", "192.168.43.193"]
+# ALLOWED_HOSTS = [*]
 
 # Application definition
 
@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'RD_auth',
     'rest_framework',
     "rest_framework_simplejwt.token_blacklist",
+
 ]
 
 REST_FRAMEWORK = {
@@ -142,18 +143,18 @@ DATABASES = {
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    # },
+    # {
+    #     'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    # },
 ]
 
 

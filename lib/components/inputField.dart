@@ -4,9 +4,20 @@ import 'package:welcome/utils/constant.dart';
 class inputField extends StatelessWidget {
   Icon? fieldIcon;
   String? hintText;
+  Widget? suffixIcon;
+  final TextEditingController? formController;
+  final String? Function(String?)? validator;
   bool obscure;
 
-  inputField(this.fieldIcon, this.hintText, {required this.obscure});
+  inputField(
+      {Key? key,
+      this.fieldIcon,
+      this.hintText,
+      this.suffixIcon,
+      this.formController,
+      this.validator,
+      required this.obscure})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,13 +25,15 @@ class inputField extends StatelessWidget {
       padding: const EdgeInsets.only(left: 05.0, right: 05.0),
       child: Container(
           width: MediaQuery.of(context).size.width,
-          height: 60,
+          height: 80,
           child: Material(
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(05.0),
-                child: TextField(
+                child: TextFormField(
+                  validator: validator,
+                  controller: formController,
                   obscureText: obscure,
                   decoration: InputDecoration(
                     labelStyle: const TextStyle(color: kAccenstColor),
@@ -40,6 +53,7 @@ class inputField extends StatelessWidget {
                     hintText: hintText,
                     fillColor: const Color.fromARGB(255, 218, 212, 212),
                     filled: true,
+                    suffixIcon: suffixIcon,
                   ),
                   style: const TextStyle(
                     fontSize: 20,

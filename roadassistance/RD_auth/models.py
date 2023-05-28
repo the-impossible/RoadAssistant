@@ -11,18 +11,18 @@ class UserManager(BaseUserManager):
         #creates a user with the parameters
         if not email:
             raise ValueError('Email address is required!')
-        
+
+        if not name:
+            raise ValueError('Full name is required!')
+
         if not phone:
             raise ValueError('Phone number is required!')
-        
-        if not name:
-            raise ValueError('Email address is required!')
+
+        if is_mec is None:
+            raise ValueError('User type is required!')
 
         if password is None:
             raise ValueError('Password is required!')
-        
-        if is_mec is None:
-            raise ValueError('User type is required!')
 
         user = self.model(
             email = self.normalize_email(email.strip()),
@@ -38,25 +38,13 @@ class UserManager(BaseUserManager):
 
     def create_superuser(self, email, name, phone, password=None):
         # create a superuser with the above parameters
-        if not email:
-            raise ValueError('Email Address is required!')
-        
-        if not phone:
-            raise ValueError('Phone number is required!')
-        
-        if not name:
-            raise ValueError('Full name is required!')
-
-        if password is None:
-            raise ValueError('Password should not be empty')
-        
 
         user = self.create_user(
-            email = self.normalize_email(email.strip()),
-            password=password,
+            email = email,
             name = name,
             phone = phone,
-            is_mec='false'
+            password=password,
+            is_mec=False
         )
 
         user.is_staff = True

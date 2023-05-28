@@ -5,6 +5,6 @@ import 'package:welcome/models/token.dart';
 
 class TokenController extends GetxController {
 
-  Token? token;
+  Token? token; 
 
 }

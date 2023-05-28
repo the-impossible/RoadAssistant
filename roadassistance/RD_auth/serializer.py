@@ -11,7 +11,7 @@ from RD_auth.models import User
 class RegisterSerializer(serializers.ModelSerializer):
 
     """Serializes the User model"""
- 
+
     email = serializers.EmailField(
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all(), message='Email Already Exist')]
@@ -21,11 +21,11 @@ class RegisterSerializer(serializers.ModelSerializer):
         required=True,
         validators=[UniqueValidator(queryset=User.objects.all(), message='Phone Number Already Exist')],
     )
-    
+
     class Meta:
         """Meta for the UserSerializer"""
         model = User
-        fields = ['user_id', 'fullname', 'email', 'phone', 'password', 'is_mec']
+        fields = ['user_id', 'name', 'email', 'phone', 'password', 'is_mec']
 
     def create(self, validated_data):
 
@@ -41,3 +41,22 @@ class RegisterSerializer(serializers.ModelSerializer):
 
         return user
 
+
+class UserSerializer(serializers.ModelSerializer):
+
+    """Serializes the User model"""
+
+    image = serializers.SerializerMethodField("get_image")
+
+    class Meta:
+        """Meta for the UserSerializer"""
+        model = User
+        fields = ['email', 'name', 'phone', 'is_mec', 'image']
+
+
+    def get_image(self, user:User):
+        """IMAGE"""
+        file = default_storage.open(user.pic.name, 'rb')
+        data = file.read()
+        file.close()
+        return base64.b64encode(data)

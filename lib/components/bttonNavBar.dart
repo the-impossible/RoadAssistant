@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:welcome/Mechanic_page/mecHome.dart';
 import 'package:welcome/utils/constant.dart';
+import 'package:welcome/views/Mechanic_page/MecHome.dart';
 import 'package:welcome/views/Mechanic_page/mecProfile.dart';
 import 'package:welcome/views/Mechanic_page/taskRec.dart';
 

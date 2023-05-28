@@ -1,4 +1,6 @@
+// import 'dart:convert';
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -10,6 +12,7 @@ import 'package:welcome/utils/custom_snackBar.dart';
 import 'package:welcome/utils/endpoints.dart';
 import 'package:welcome/utils/loading.dart';
 import 'package:welcome/utils/preferences.dart';
+// import 'package:welcome/utils/preferences.dart';
 
 class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
@@ -31,30 +34,38 @@ class LoginController extends GetxController {
       var url =
           Uri.parse(APIEndPoints.baseURL + APIEndPoints.authEndPoints.signIn);
 
-      var request = http.MultipartRequest('POST', url);
-
-      request.fields.addAll({
-        'email': emailController.text,
+      Map body = {
+        'email': emailController.text.toLowerCase(),
         'password': passwordController.text,
-      });
+      };
 
-      request.headers.addAll(headers);
+      http.Response response =
+          await http.post(url, body: jsonEncode(body), headers: headers);
 
-      http.StreamedResponse response = await request.send();
+      // var request = http.MultipartRequest('POST', url);
+
+      // request.fields.addAll({
+      //   'email': emailController.text.toLowerCase(),
+      //   'password': passwordController.text,
+      // });
+
+      // http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
+        tokenController.token = tokenFromJson(response.body);
+        print("Login Response: ${tokenController.token}");
 
-      tokenController.token = tokenFromJson(await response.stream.bytesToString());
-
-      ProfileController profileController = Get.put(ProfileController());
+        ProfileController profileController = Get.put(ProfileController());
+        print(profileController);
         profileController.onInit();
         emailController.clear();
         passwordController.clear();
-
-      }else{}
-
+      } else {
+        // print(response.reasonPhrase);
+      }
     } catch (e) {
-      ScaffoldMessenger.of(Get.context!).showSnackBar(customSnackBar("Error: ${e.toString()}", false));
+      ScaffoldMessenger.of(Get.context!)
+          .showSnackBar(customSnackBar("Error: ${e.toString()}", false));
     }
   }
 }

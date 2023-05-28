@@ -1,21 +1,21 @@
 
 class FormValidation {
 
-  String? validatePassword(String? value) {
+  static String? validatePassword(String? value) {
     if (value == null || value.isEmpty) {
       return 'Password is Required!';
     }
     return null;
   }
 
-  String? validateName(String? value) {
+  static String? validateName(String? value) {
     if (value == null || value.isEmpty) {
       return 'Full name is Required!';
     }
     return null;
   }
 
-  String? validatePhoneNumber(String? value) {
+  static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
       return 'Phone Number is Required!';
     } else if (value.length != 11) {
@@ -24,7 +24,7 @@ class FormValidation {
     return null;
   }
 
-  String? validateEmail(String? value) {
+  static String? validateEmail(String? value) {
     bool emailValid = RegExp(
             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')
         .hasMatch(value!);
