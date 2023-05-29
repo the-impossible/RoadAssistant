@@ -24,6 +24,13 @@ class FormValidation {
     return null;
   }
 
+  static String? validateUserType(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'User Type is Required!';
+    }
+    return null;
+  }
+
   static String? validateEmail(String? value) {
     bool emailValid = RegExp(
             r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$')

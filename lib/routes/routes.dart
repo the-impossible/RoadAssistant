@@ -102,7 +102,7 @@ final getPages = [
   ),
   GetPage(
     name: Routes.registerPage,
-    page: () => const registerPage(),
+    page: () => const RegisterPage(),
   ),
   GetPage(
     name: Routes.mecHomePage,
