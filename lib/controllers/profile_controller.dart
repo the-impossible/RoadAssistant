@@ -18,15 +18,15 @@ class ProfileController extends GetxController {
         asyncFunction: () => getProfile(), loadingWidget: const Loading());
   }
 
-  // var isLoading = false.obs;
-
   Future<void> getProfile() async {
     TokenController tokenController = Get.put(TokenController());
+
     try {
       var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${tokenController.token!.access}'
       };
+
       var url =
           Uri.parse(APIEndPoints.baseURL + APIEndPoints.authEndPoints.profile);
 
@@ -39,13 +39,8 @@ class ProfileController extends GetxController {
       if (response.statusCode == 200) {
         userProfile =
             userProfileFromJson(await response.stream.bytesToString());
-
-        print("userProfile: ${userProfile!.email}");
-        // isLoading(true);
-
-    
         // Check user type and route
-        if (userProfile!.isMec) {
+        if (userProfile!.is_mec) {
           Get.offNamed(Routes.mecHomePage);
         } else {
           Get.offNamed(Routes.driverPage);
@@ -57,8 +52,6 @@ class ProfileController extends GetxController {
     } catch (e) {
       ScaffoldMessenger.of(Get.context!)
           .showSnackBar(customSnackBar("Error: ${e.toString()}", false));
-    } finally {
-      // isLoading(false);
     }
   }
 }

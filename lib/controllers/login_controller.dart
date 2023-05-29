@@ -30,38 +30,27 @@ class LoginController extends GetxController {
     TokenController tokenController = Get.put(TokenController());
 
     try {
-      var headers = {'Content-Type': 'application/json'};
-      var url =
-          Uri.parse(APIEndPoints.baseURL + APIEndPoints.authEndPoints.signIn);
+      var request = http.MultipartRequest('POST',
+          Uri.parse(APIEndPoints.baseURL + APIEndPoints.authEndPoints.signIn));
 
-      Map body = {
+      request.fields.addAll({
         'email': emailController.text.toLowerCase(),
-        'password': passwordController.text,
-      };
+        'password': passwordController.text
+      });
 
-      http.Response response =
-          await http.post(url, body: jsonEncode(body), headers: headers);
-
-      // var request = http.MultipartRequest('POST', url);
-
-      // request.fields.addAll({
-      //   'email': emailController.text.toLowerCase(),
-      //   'password': passwordController.text,
-      // });
-
-      // http.StreamedResponse response = await request.send();
+      http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        tokenController.token = tokenFromJson(response.body);
-        print("Login Response: ${tokenController.token}");
-
+        tokenController.token =
+            tokenFromJson(await response.stream.bytesToString());
         ProfileController profileController = Get.put(ProfileController());
-        print(profileController);
         profileController.onInit();
         emailController.clear();
         passwordController.clear();
       } else {
-        // print(response.reasonPhrase);
+
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
+            customSnackBar("Error: ${response.reasonPhrase}", false));
       }
     } catch (e) {
       ScaffoldMessenger.of(Get.context!)

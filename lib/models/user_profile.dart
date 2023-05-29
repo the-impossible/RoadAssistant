@@ -1,18 +1,20 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'dart:convert';
 import 'dart:typed_data';
 
 class UserProfile {
   String email;
   String name;
-  dynamic phone;
-  bool isMec;
+  String phone;
+  bool is_mec;
   Uint8List image;
 
   UserProfile({
     required this.email,
     required this.name,
     required this.phone,
-    required this.isMec,
+    required this.is_mec,
     required this.image,
   });
 
@@ -21,7 +23,7 @@ class UserProfile {
       email: json["email"],
       name: json["name"],
       phone: json["phone"],
-      isMec: json["isMec"],
+      is_mec: json["is_mec"],
       image: base64Decode(json["image"]),
     );
   }
@@ -30,7 +32,7 @@ class UserProfile {
         "email": email,
         "name": name,
         "phone": phone,
-        "isMec": isMec,
+        "is_mec": is_mec,
         "image": base64Encode(image),
       };
 }

@@ -46,7 +46,6 @@ class _DriverHomeState extends State<DriverHome> {
                   padding: const EdgeInsets.only(top: 05.0, left: 10),
                   child: SingleChildScrollView(
                     child: Row(
-                      // mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Image.asset(
@@ -65,9 +64,7 @@ class _DriverHomeState extends State<DriverHome> {
                               fontFamily: 'Schyuler',
                               fontWeight: FontWeight.bold),
                         ),
-                        const SizedBox(
-                          width: 200,
-                        ),
+                        const Spacer(),
                         const Icon(
                           Icons.notifications,
                           size: 30,
@@ -112,25 +109,20 @@ class _DriverHomeState extends State<DriverHome> {
         child: ListView(
           reverse: false,
           children: [
-            Container(
-              height: 380,
+            SizedBox(
+              height: MediaQuery.of(context).size.height * .3,
               child: DrawerHeader(
-                margin: const EdgeInsets.only(
-                  bottom: 20,
-                ),
-                padding: const EdgeInsets.all(0),
                 child: Container(
-                  padding: const EdgeInsets.all(2),
                   color: Colors.blueAccent,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(top: 20.0),
+                        padding: const EdgeInsets.only(top: 0.0),
                         child: Image.asset(
                           'assets/images/profile.png',
-                          height: 150,
-                          width: 150,
+                          height: 100,
+                          width: 100,
                           alignment: Alignment.topCenter,
                         ),
                       ),
