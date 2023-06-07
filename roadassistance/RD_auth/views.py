@@ -5,10 +5,7 @@ from rest_framework import permissions
 from rest_framework.response import Response
 
 
-from RD_auth.serializer import (
-    RegisterSerializer,
-    UserSerializer,
-)
+from RD_auth.serializer import *
 
 # Create your views here.
 class RegisterView(generics.CreateAPIView):
@@ -29,3 +26,10 @@ class UserView(generics.RetrieveAPIView):
 
     def get_object(self):
         return self.request.user
+
+class UpdateUserView(generics.UpdateAPIView):
+    """This view returns a user"""
+    serializer_class = EditUserSerializer
+    queryset = User.objects.all()
+    permission_classes = (permissions.IsAuthenticated,)
+

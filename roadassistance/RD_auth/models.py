@@ -58,6 +58,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     user_id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
     email = models.CharField(max_length=100, db_index=True, unique=True, verbose_name='email address', blank=True, null=True)
     name = models.CharField(max_length=100, blank=True, null=True)
+    biz_name = models.CharField(max_length=100, blank=True, null=True)
+    shop_address = models.CharField(max_length=100, blank=True, null=True)
+    lat = models.CharField(max_length=100, blank=True, null=True)
+    lon = models.CharField(max_length=100, blank=True, null=True)
     phone = models.CharField(max_length=11, blank=True, null=True)
     pic = models.ImageField(null=True, blank=True, upload_to='uploads/', default='img/user.png')
 
