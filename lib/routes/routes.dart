@@ -43,8 +43,6 @@ class Routes {
   static String requestPageStatus = '/requestPageStatus';
   static String request_mechanic = '/request_mechanic';
   static String complete_taskPage = '/complete_taskPage';
-
-  // MecHomePage
 }
 
 final getPages = [
@@ -106,7 +104,7 @@ final getPages = [
   ),
   GetPage(
     name: Routes.mecHomePage,
-    page: () => const MecHomePage(),
+    page: () => MecHomePage(),
   ),
   GetPage(
     name: Routes.driverProfile,

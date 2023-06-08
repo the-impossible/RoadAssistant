@@ -18,7 +18,6 @@ class LoginController extends GetxController {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
 
-  UserProfile? userProfile;
   Preferences preferences = Preferences();
 
   verifyLogin() async {
@@ -48,7 +47,6 @@ class LoginController extends GetxController {
         emailController.clear();
         passwordController.clear();
       } else {
-
         ScaffoldMessenger.of(Get.context!).showSnackBar(
             customSnackBar("Error: ${response.reasonPhrase}", false));
       }

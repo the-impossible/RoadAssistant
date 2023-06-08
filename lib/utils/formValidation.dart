@@ -15,6 +15,13 @@ class FormValidation {
     return null;
   }
 
+  static String? validateBusinessName(String? value) {
+    if (value == null || value.isEmpty) {
+      return 'Business name is Required!';
+    }
+    return null;
+  }
+
   static String? validatePhoneNumber(String? value) {
     if (value == null || value.isEmpty) {
       return 'Phone Number is Required!';

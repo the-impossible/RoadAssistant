@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:welcome/controllers/register_controller.dart';
 import 'package:welcome/utils/constant.dart';
 import 'package:welcome/components/inputField.dart';
-import 'package:welcome/utils/custom_snackBar.dart';
+// import 'package:welcome/utils/custom_snackBar.dart';
 import 'package:welcome/utils/formValidation.dart';
 import '../../routes/routes.dart';
 

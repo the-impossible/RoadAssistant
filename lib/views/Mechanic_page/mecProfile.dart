@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:welcome/components/defaultAppBar.dart';
 import 'package:welcome/components/defaultBackButton.dart';
 import 'package:welcome/utils/constant.dart';
-import 'package:welcome/views/Mechanic_page/updateProfileText.dart';
 
 class Mec_profilePage extends StatelessWidget {
   const Mec_profilePage({super.key});
@@ -34,25 +33,18 @@ class Mec_profilePage extends StatelessWidget {
                   children: const [
                     Text(
                       'MECID:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Schyuler'
-                      ),
+                      style: TextStyle(fontSize: 20, fontFamily: 'Schyuler'),
                     ),
                     SizedBox(height: 10.0),
                     Text(
                       'NAME:',
-                      style: TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Schyuler'
-                      ),
+                      style: TextStyle(fontSize: 20, fontFamily: 'Schyuler'),
                     ),
                   ],
                 ),
               ],
             ),
             // SizedBox(height: 20.0),
-            UpdateProfileText(),
           ],
         ),
       ),

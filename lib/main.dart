@@ -6,7 +6,7 @@ import 'package:welcome/routes/routes.dart';
 
 void main() {
   SystemChrome.setSystemUIOverlayStyle(
-    SystemUiOverlayStyle(statusBarColor: kTransparentColor),
+    const SystemUiOverlayStyle(statusBarColor: kTransparentColor),
   );
   runApp(MyApp());
 }

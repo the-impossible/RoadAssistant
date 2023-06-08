@@ -30,7 +30,7 @@ class inputField extends StatelessWidget {
             child: Container(
               width: MediaQuery.of(context).size.width,
               child: Padding(
-                padding: const EdgeInsets.all(05.0),
+                padding: const EdgeInsets.all(5.0),
                 child: TextFormField(
                   validator: validator,
                   controller: formController,
