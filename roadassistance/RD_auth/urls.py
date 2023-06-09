@@ -18,6 +18,8 @@ urlpatterns = [
     path('register/', RegisterView.as_view(), name='register'),
     path('getUser/', UserView.as_view(), name='getUser'),
     path("updateProfile/<str:pk>", UpdateUserView.as_view(), name="updateProfile"),
+
     path('getMec/', GetMechanicsView.as_view(), name='getMec'),
+    path('getAMec/<str:pk>', GetAMecView.as_view(), name='getAUser'),
 
 ]

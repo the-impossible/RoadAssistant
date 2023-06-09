@@ -12,4 +12,5 @@ class AuthEndPoints {
   final String profile = 'auth/getUser/';
   final String updateProfile = 'auth/updateProfile/';
   final String getMec = 'auth/getMec/';
+  final String getAMec = 'auth/getAMec/';
 }

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:welcome/controllers/getMecController.dart';
 import 'package:welcome/controllers/getNearbyMecController.dart';
 import 'package:welcome/controllers/navigationDrawer.dart';
 import 'package:welcome/controllers/profile_controller.dart';
+import 'package:welcome/models/get_mec.dart';
 import 'package:welcome/models/nearby_mec.dart';
 import 'package:welcome/utils/constant.dart';
 import 'package:get/get.dart';
@@ -19,6 +21,7 @@ class _DriverHomeState extends State<DriverHome> {
   ProfileController profileController = Get.put(ProfileController());
   GetNearbyMecController getNearbyMecController =
       Get.put(GetNearbyMecController());
+  GetMecController getMecController = Get.put(GetMecController());
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +155,10 @@ class _DriverHomeState extends State<DriverHome> {
                                     width: MediaQuery.of(context).size.width,
                                     child: ListTile(
                                       onTap: () {
-                                        Get.toNamed(Routes.request_mechanic);
+                                        getMecController.userID =
+                                            nearbyData.userId;
+
+                                        getMecController.processGetNearbyMechanic();
                                       },
                                       leading: CircleAvatar(
                                         backgroundColor:

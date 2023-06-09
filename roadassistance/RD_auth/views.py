@@ -45,3 +45,15 @@ class GetMechanicsView(APIView):
         ordered_serializer_data = sorted(serializer.data, key=lambda x: x['distance'])
         return Response(ordered_serializer_data)
 
+class GetAMecView(generics.RetrieveAPIView):
+    """This view returns a mechanic"""
+    serializer_class = AllMecSerializers
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, pk):
+        try:
+            mechanic = User.objects.get(user_id=pk)
+            serializers = AllMecSerializers(mechanic, context={'geo_data':request.data})
+            return Response(serializers.data)
+        except User.DoesNotExist :
+            return Response(status = status.HTTP_400_BAD_REQUEST)
