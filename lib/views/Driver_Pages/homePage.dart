@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:welcome/controllers/getNearbyMecController.dart';
+import 'package:welcome/controllers/navigationDrawer.dart';
+import 'package:welcome/controllers/profile_controller.dart';
 import 'package:welcome/utils/constant.dart';
 import 'package:get/get.dart';
+import 'package:welcome/utils/loading.dart';
 import '../../routes/routes.dart';
 
 class DriverHome extends StatefulWidget {
@@ -11,225 +15,170 @@ class DriverHome extends StatefulWidget {
 }
 
 class _DriverHomeState extends State<DriverHome> {
+  ProfileController profileController = Get.put(ProfileController());
+  GetNearbyMecController getNearbyMecController =
+      Get.put(GetNearbyMecController());
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'DASHBOARD',
+          'Dashboard',
           style: TextStyle(fontWeight: FontWeight.bold, color: kDarkColor),
         ),
         centerTitle: true,
         // backgroundColor: kWhiteColor,
       ),
       body: SingleChildScrollView(
-        child: Container(
-          color: kGreyColor,
-          padding: const EdgeInsets.only(top: 19.0, left: 10.0, right: 10.0),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SingleChildScrollView(
-                child: Container(
-                  height: 80,
-                  // width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: kWhiteColor,
-                    shape: BoxShape.rectangle,
-                    borderRadius: BorderRadius.circular(25.0),
-                    boxShadow: const [
-                      BoxShadow(
+              Container(
+                height: size.height * .13,
+                width: size.width,
+                margin: const EdgeInsets.only(bottom: 10),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(15),
+                  color: kWhiteColor,
+                  boxShadow: const [
+                    BoxShadow(
                         color: kLightColor,
                         blurRadius: 1.0,
-                      ),
-                    ],
-                  ),
-                  padding: const EdgeInsets.only(top: 05.0, left: 10),
-                  child: SingleChildScrollView(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Image.asset(
-                          'assets/images/profile.png',
-                          height: 60,
-                          width: 60,
-                          matchTextDirection: true,
+                        offset: Offset(1, 3)),
+                  ],
+                ),
+                padding: const EdgeInsets.only(top: 05.0, left: 10),
+                child: Obx(
+                  () => profileController.isLoading.value
+                      ? const Center(child: CircularProgressIndicator())
+                      : Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 8.0, top: 8, bottom: 8),
+                              child: CircleAvatar(
+                                backgroundColor:
+                                    Color.fromARGB(255, 228, 236, 230),
+                                maxRadius: 50,
+                                minRadius: 50,
+                                child: ClipOval(
+                                  child: Image.memory(
+                                    profileController.userProfile!.image,
+                                    height: 70,
+                                    width: 70,
+                                    fit: BoxFit.cover,
+                                    // alignment: Alignment.topRight,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 15,
+                            ),
+                            Text(
+                              profileController.userProfile!.name,
+                              softWrap: true,
+                              style: const TextStyle(
+                                  fontSize: 22,
+                                  fontFamily: 'Schyuler',
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
                         ),
-                        const SizedBox(
-                          width: 15,
-                        ),
-                        const Text(
-                          'BeeJAY',
-                          style: TextStyle(
-                              fontSize: 20,
-                              fontFamily: 'Schyuler',
-                              fontWeight: FontWeight.bold),
-                        ),
-                        const Spacer(),
-                        const Icon(
-                          Icons.notifications,
-                          size: 30,
-                        ),
-                      ],
-                    ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 20.0),
+                child: Text(
+                  'Nearby Mechanics',
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontFamily: 'Schuyler',
+                    fontWeight: FontWeight.bold,
+                    color: kDarkColor,
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 400,
-              ),
-              Container(
-                width: 350,
-                height: 50,
-                child: ElevatedButton(
-                    style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.all(
-                        Color.fromARGB(255, 248, 247, 247),
-                      ),
-                      elevation: MaterialStateProperty.all(5.0),
-                      shadowColor: MaterialStateProperty.all(Colors.grey),
-                    ),
-                    onPressed: () {
-                      Get.toNamed(Routes.nearbyMechanics);
-                    },
-                    child: const Text(
-                      'Find Nearby Mechanics',
-                      style: TextStyle(
-                        fontSize: 18.0,
-                        fontFamily: 'Schuyler',
-                        fontWeight: FontWeight.bold,
-                        color: kDarkColor,
-                      ),
-                    )),
+              SizedBox(
+                height: size.height * .7,
+                child: FutureBuilder(
+                    // future: null,
+                    future: getNearbyMecController.getNearbyMechanic(),
+                    builder: (context, snapshot) {
+                      return ListView.builder(
+                        physics: const ClampingScrollPhysics(),
+                        padding: EdgeInsets.zero,
+                        itemCount: 10,
+                        itemBuilder: (context, index) {
+                          return Column(
+                            children: [
+                              Card(
+                                elevation: 3,
+                                shadowColor: kDarkColor,
+                                color: kLightPinkColor,
+                                child: SizedBox(
+                                  height: size.height * .1,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: ListTile(
+                                    onTap: () {
+                                      Get.toNamed(Routes.request_mechanic);
+                                    },
+                                    leading: CircleAvatar(
+                                      backgroundColor:
+                                          Color.fromARGB(255, 228, 236, 230),
+                                      maxRadius: 20,
+                                      minRadius: 20,
+                                      child: ClipOval(
+                                        child: Image.memory(
+                                          profileController.userProfile!.image,
+                                          height: 40,
+                                          width: 40,
+                                          fit: BoxFit.cover,
+                                          // alignment: Alignment.topRight,
+                                        ),
+                                      ),
+                                    ),
+                                    trailing: const Icon(
+                                        Icons.arrow_forward_ios_outlined),
+                                    title: const Text(
+                                      ' Ademola',
+                                      style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold,
+                                        color: kDarkColor,
+                                        fontFamily: 'Schyuler',
+                                      ),
+                                    ),
+                                    subtitle: const Text(
+                                      'Repair all kind of vehicles',
+                                      style: TextStyle(
+                                        fontFamily: 'Schyuler',
+                                        fontStyle: FontStyle.italic,
+                                        color: kLightColor,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                //
+                              ),
+                            ],
+                          );
+                        },
+                      );
+                    }),
               )
             ],
           ),
         ),
       ),
-      drawer: Drawer(
-        child: ListView(
-          reverse: false,
-          children: [
-            SizedBox(
-              height: MediaQuery.of(context).size.height * .3,
-              child: DrawerHeader(
-                child: Container(
-                  color: Colors.blueAccent,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: const EdgeInsets.only(top: 0.0),
-                        child: Image.asset(
-                          'assets/images/profile.png',
-                          height: 100,
-                          width: 100,
-                          alignment: Alignment.topCenter,
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 20,
-                      ),
-                      const Text(
-                        'Bolaji Olagoke',
-                        style: TextStyle(fontSize: 30.0, color: kWhiteColor),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                Get.toNamed(Routes.driverPage);
-              },
-              leading: Icon(Icons.home),
-              title: const Text(
-                'Dashboard',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontFamily: 'Schyuler',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const Divider(
-              height: 30.0,
-              thickness: 2.0,
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                Get.toNamed(Routes.nearbyMechanics);
-              },
-              leading: Icon(Icons.car_repair),
-              title: const Text(
-                'Nearby Mechanics',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontFamily: 'Schyuler',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const Divider(
-              height: 30.0,
-              thickness: 2.0,
-            ),
-            ListTile(
-              onTap: () {
-                Get.toNamed(Routes.taskPage);
-              },
-              leading: const Icon(Icons.task),
-              title: const Text(
-                'Task',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontFamily: 'Schyuler',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const Divider(
-              thickness: 2.0,
-              height: 30.0,
-            ),
-            ListTile(
-              onTap: () {
-                Navigator.pop(context);
-                Get.toNamed(Routes.driverProfile);
-              },
-              leading: const Icon(Icons.person),
-              title: const Text(
-                'Profile',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontFamily: 'Schyuler',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const Divider(
-              thickness: 2.0,
-              height: 30.0,
-            ),
-            ListTile(
-              onTap: () {
-                Get.toNamed(Routes.login);
-              },
-              leading: const Icon(Icons.logout),
-              title: const Text(
-                'Logout',
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontFamily: 'Schyuler',
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-          ],
-        ),
-      ),
+      drawer: const NavigationDrawer(),
     );
   }
 }

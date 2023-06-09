@@ -74,7 +74,6 @@ class _Nearby_MechanicState extends State<Nearby_Mechanic> {
                       ),
                     ),
                   ),
-
                   //
                 ),
               ],

@@ -11,6 +11,7 @@ import 'package:welcome/controllers/profile_controller.dart';
 import 'package:welcome/controllers/updateProfile_controller.dart';
 import 'package:welcome/utils/constant.dart';
 import 'package:welcome/components/inputField.dart';
+import 'package:welcome/utils/customFunction.dart';
 import 'package:welcome/utils/custom_snackBar.dart';
 import 'package:welcome/utils/formValidation.dart';
 
@@ -30,42 +31,7 @@ class _Update_PageState extends State<Update_Page> {
 
   File? image;
 
-  Future<Position> _determinePosition() async {
-    bool serviceEnabled;
-    LocationPermission permission;
 
-    // Test if location services are enabled.
-    serviceEnabled = await Geolocator.isLocationServiceEnabled();
-    if (!serviceEnabled) {
-      await Geolocator.openLocationSettings();
-      return Future.error('Location services are disabled.');
-    }
-
-    permission = await Geolocator.checkPermission();
-    if (permission == LocationPermission.denied) {
-      permission = await Geolocator.requestPermission();
-      if (permission == LocationPermission.denied) {
-        return Future.error('Location permissions are denied');
-      }
-    }
-
-    if (permission == LocationPermission.deniedForever) {
-      // Permissions are denied forever, handle appropriately.
-      return Future.error(
-          'Location permissions are permanently denied, we cannot request permissions.');
-    }
-
-    return await Geolocator.getCurrentPosition(
-        desiredAccuracy: LocationAccuracy.high);
-  }
-
-  Future<Placemark> GetAddressFromPosition(Position position) async {
-    List<Placemark> placemark =
-        await placemarkFromCoordinates(position.latitude, position.longitude);
-
-    Placemark place = placemark[0];
-    return place;
-  }
 
   Future pickImage() async {
     try {
@@ -214,7 +180,7 @@ class _Update_PageState extends State<Update_Page> {
                                   onPressed: () async {
                                     Navigator.pop(context);
                                     Position position =
-                                        await _determinePosition();
+                                        await determinePosition();
                                     // update the mechanic latitude and longitude
                                     updateProfileController.latController.text =
                                         position.latitude.toString();

@@ -3,6 +3,8 @@ from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
 from django.contrib.auth.password_validation import validate_password
 from django.core.files.storage import default_storage
+from geopy.distance import geodesic
+
 
 import base64
 # My App Import
@@ -78,4 +80,44 @@ class EditUserSerializer(serializers.ModelSerializer):
         data = file.read()
         file.close()
         return base64.b64encode(data)
+
+class AllMecSerializers(serializers.ModelSerializer):
+    """_MecSerializer_
+
+    Args:
+        serializers (_type_): _Serializing the User model to for API calls_
+    """
+
+    image = serializers.SerializerMethodField("get_image")
+    distance = serializers.SerializerMethodField("cal_distance")
+
+    class Meta:
+        """Meta for the AllMecSerializer"""
+        model = User
+        fields = ['user_id', 'email', 'name', 'phone', 'is_mec', 'biz_name', 'shop_address','lat', 'lon', 'distance', 'image']
+
+    def get_image(self, user:User):
+        """IMAGE"""
+        file = default_storage.open(user.pic.name, 'rb')
+        data = file.read()
+        file.close()
+        return base64.b64encode(data)
+
+    def cal_distance(self, mec_object):
+        # Get current registered mechanic geo-coordinate
+        m_lat = getattr(mec_object, "lat")
+        m_lon = getattr(mec_object, "lon")
+
+        # Get the current driver geo-coordinate
+        d_lat = self.context['geo_data']['lat']
+        d_lon = self.context['geo_data']['lon']
+
+        # Organize the coordinate
+        mec_coordinate = (m_lat, m_lon)
+        driver_coordinate = (d_lat, d_lon)
+
+        return f"{geodesic(driver_coordinate, mec_coordinate).km: .2f}".strip()
+
+    def get_distance(self, instance):
+        distance = instance.distance.order_by()
 
