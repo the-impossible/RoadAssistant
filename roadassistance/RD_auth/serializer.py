@@ -132,3 +132,36 @@ class VerifyPendingRequestSerializer(serializers.ModelSerializer):
         """Meta for the RequestAMecSerializer"""
         model = RequestMec
         fields = ['approved', 'pending', 'date_requested']
+
+class AllRequestSerializer(serializers.ModelSerializer):
+
+    distance = serializers.SerializerMethodField("cal_distance")
+    biz_name = serializers.SerializerMethodField("get_biz_name")
+
+    class Meta:
+        """Meta for the RequestAMecSerializer"""
+        model = RequestMec
+        fields = ['request_id', 'biz_name', 'distance']
+
+    def cal_distance(self, request_object):
+        # Get the current driver geo-coordinate
+        d_lat = getattr(request_object, "lat")
+        d_lon = getattr(request_object, "lon")
+
+        # Get current registered mechanic geo-coordinate
+        mec = User.objects.get(email=getattr(request_object, 'mec_id'))
+
+        m_lat = mec.lat
+        m_lon = mec.lon
+
+        # Organize the coordinate
+        mec_coordinate = (m_lat, m_lon)
+        driver_coordinate = (d_lat, d_lon)
+
+        return f"{geodesic(driver_coordinate, mec_coordinate).km: .2f}".strip()
+
+    def get_biz_name(self, request_object):
+        # Get the current mechanic biz name
+        mec = User.objects.get(email=getattr(request_object, 'mec_id'))
+
+        return f"{mec.biz_name}".strip()

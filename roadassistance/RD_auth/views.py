@@ -68,13 +68,22 @@ class RequestAMecView(generics.CreateAPIView):
 
 class VerifyPendingRequestView(APIView):
     """This view verifies if the driver has any pending request"""
-    # serializer_class = AllMecSerializers
     permission_classes = (permissions.IsAuthenticated,)
 
     def get(self, request, *args, **kwargs):
         driver_id = request.data
         assistance = RequestMec.objects.filter(pending=True, driver_id=driver_id['driver_id'])
-        print(f"SEE AM: {assistance}")
         if assistance:
             return Response(status = status.HTTP_400_BAD_REQUEST)
         return Response(status = status.HTTP_200_OK)
+
+class GetHistoryView(generics.ListAPIView):
+    """This view gets all driver request history"""
+    serializer_class = AllRequestSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    model = RequestMec
+    queryset = RequestMec.objects.all()
+
+    def get_queryset(self):
+        return RequestMec.objects.filter(driver_id=self.request.user).order_by('-date_requested')
+
