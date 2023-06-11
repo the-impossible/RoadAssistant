@@ -21,5 +21,6 @@ urlpatterns = [
 
     path('getMec/', GetMechanicsView.as_view(), name='getMec'),
     path('getAMec/<str:pk>', GetAMecView.as_view(), name='getAUser'),
-
+    path('requestAMec/', RequestAMecView.as_view(), name='requestAMec'),
+    path('verifyRequest/', VerifyPendingRequestView.as_view(), name='verifyRequest'),
 ]

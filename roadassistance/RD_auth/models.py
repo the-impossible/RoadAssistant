@@ -90,3 +90,21 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         db_table = 'Users'
         verbose_name_plural = 'Users'
+
+class RequestMec(models.Model):
+    request_id = models.UUIDField(default=uuid.uuid4, primary_key=True, unique=True, editable=False)
+    mec_id = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True, related_name="mechanic")
+    driver_id = models.ForeignKey(User, on_delete=models.CASCADE, blank=True, null=True)
+    lat = models.CharField(max_length=100, blank=True, null=True)
+    lon = models.CharField(max_length=100, blank=True, null=True)
+    approved = models.BooleanField(default=False)
+    pending = models.BooleanField(default=True)
+    date_requested = models.DateTimeField(verbose_name='date_requested', auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.driver_id} requested assistance from {self.mec_id.biz_name }"
+
+    class Meta:
+        db_table = 'Request Mechanic'
+        verbose_name_plural = 'Request Mechanic'
+

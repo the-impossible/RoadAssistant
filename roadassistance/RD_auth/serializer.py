@@ -8,7 +8,7 @@ from geopy.distance import geodesic
 
 import base64
 # My App Import
-from RD_auth.models import User
+from RD_auth.models import *
 
 class RegisterSerializer(serializers.ModelSerializer):
 
@@ -42,7 +42,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
 
         return user
-
 
 class UserSerializer(serializers.ModelSerializer):
 
@@ -121,3 +120,15 @@ class AllMecSerializers(serializers.ModelSerializer):
     def get_distance(self, instance):
         distance = instance.distance.order_by()
 
+class RequestAMecSerializer(serializers.ModelSerializer):
+    class Meta:
+        """Meta for the RequestAMecSerializer"""
+        model = RequestMec
+        fields = ['request_id', 'mec_id', 'driver_id', 'lat', 'lon', 'approved', 'pending', 'date_requested']
+
+class VerifyPendingRequestSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        """Meta for the RequestAMecSerializer"""
+        model = RequestMec
+        fields = ['approved', 'pending', 'date_requested']

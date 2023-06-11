@@ -5,7 +5,9 @@ from rest_framework import status
 from rest_framework import permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.views import View
 
+from RD_auth.models import RequestMec
 from RD_auth.serializer import *
 
 # Create your views here.
@@ -57,3 +59,22 @@ class GetAMecView(generics.RetrieveAPIView):
             return Response(serializers.data)
         except User.DoesNotExist :
             return Response(status = status.HTTP_400_BAD_REQUEST)
+
+class RequestAMecView(generics.CreateAPIView):
+
+    """Driver can request for a mec"""
+    serializer_class = RequestAMecSerializer
+    permission_classes = [permissions.IsAuthenticated]
+
+class VerifyPendingRequestView(APIView):
+    """This view verifies if the driver has any pending request"""
+    # serializer_class = AllMecSerializers
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        driver_id = request.data
+        assistance = RequestMec.objects.filter(pending=True, driver_id=driver_id['driver_id'])
+        print(f"SEE AM: {assistance}")
+        if assistance:
+            return Response(status = status.HTTP_400_BAD_REQUEST)
+        return Response(status = status.HTTP_200_OK)

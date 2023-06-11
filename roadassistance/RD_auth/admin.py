@@ -3,6 +3,7 @@ from django.contrib.auth.admin import UserAdmin
 
 from RD_auth.models import (
     User,
+    RequestMec,
 )
 
 class UserAdmin(UserAdmin):
@@ -21,3 +22,4 @@ class UserAdmin(UserAdmin):
 
 # Register your models here.
 admin.site.register(User, UserAdmin)
+admin.site.register(RequestMec)
