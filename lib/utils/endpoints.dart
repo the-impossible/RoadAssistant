@@ -13,4 +13,7 @@ class AuthEndPoints {
   final String updateProfile = 'auth/updateProfile/';
   final String getMec = 'auth/getMec/';
   final String getAMec = 'auth/getAMec/';
+  final String requestAMec = 'auth/requestAMec/';
+  final String verifyRequest = 'auth/verifyRequest/';
+  final String getDriverHistory = 'auth/GetDriverHistory/';
 }

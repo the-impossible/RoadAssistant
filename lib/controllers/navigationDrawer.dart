@@ -81,7 +81,7 @@ Widget buildMenuItems(BuildContext context) {
         ),
         ListTile(
             leading: const Icon(Icons.task),
-            title: const Text('Task'),
+            title: const Text('Request History'),
             onTap: () {
               Navigator.pop(context);
               Get.toNamed(Routes.taskPage);

@@ -1,52 +1,46 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:welcome/controllers/tokenController.dart';
-import 'package:welcome/models/nearby_mec.dart';
-import 'package:welcome/utils/customFunction.dart';
+import 'package:welcome/models/driver_history.dart';
 import 'package:welcome/utils/custom_snackBar.dart';
 import 'package:welcome/utils/endpoints.dart';
 import 'package:http/http.dart' as http;
 
-class GetNearbyMecController extends GetxController {
-  List<NearbyMechanic>? nearbyMechanic;
+class GetDriverHistoryController extends GetxController {
+  List<DriverHistory>? driverHistory;
 
-  Future<List<NearbyMechanic>?> getNearbyMechanic() async {
+  Future<List<DriverHistory>?> getHistory() async {
     TokenController tokenController = Get.put(TokenController());
 
-    Position position = await determinePosition();
     try {
       var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${tokenController.token!.access}'
       };
 
-      var url =
-          Uri.parse(APIEndPoints.baseURL + APIEndPoints.authEndPoints.getMec);
+      var url = Uri.parse(
+          APIEndPoints.baseURL + APIEndPoints.authEndPoints.getDriverHistory);
 
       var request = http.MultipartRequest('GET', url);
-
-      request.fields.addAll({
-        'lon': position.longitude.toString(),
-        'lat': position.latitude.toString(),
-      });
 
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        nearbyMechanic =
-            nearbyMechanicFromJson(await response.stream.bytesToString());
 
-        if (nearbyMechanic!.isEmpty) {
+        driverHistory =
+            driverHistoryFromJson(await response.stream.bytesToString());
+
+        if (driverHistory!.isEmpty) {
           ScaffoldMessenger.of(Get.context!)
               .showSnackBar(customSnackBar("No Data Available", false));
         }
-        return nearbyMechanic;
+
+        return driverHistory;
       } else {
-        ScaffoldMessenger.of(Get.context!)
-            .showSnackBar(customSnackBar("Error: ", false));
+        ScaffoldMessenger.of(Get.context!).showSnackBar(
+            customSnackBar("Error: ${response.reasonPhrase}", false));
         return [];
       }
     } catch (e) {

@@ -1,3 +1,4 @@
 {
-	"cSpell.words": ["Schyuler"]
+	"cSpell.words": ["Schyuler"],
+	"cmake.configureOnOpen": false
 }

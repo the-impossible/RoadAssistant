@@ -3,6 +3,8 @@ import 'package:get/get.dart';
 import 'package:welcome/components/defaultAppBar.dart';
 import 'package:welcome/components/defaultBackButton.dart';
 import 'package:welcome/controllers/getMecController.dart';
+import 'package:welcome/controllers/profile_controller.dart';
+import 'package:welcome/controllers/requestMecController.dart';
 import 'package:welcome/utils/constant.dart';
 
 class Request_Mechanic extends StatefulWidget {
@@ -14,6 +16,8 @@ class Request_Mechanic extends StatefulWidget {
 
 class _Request_MechanicState extends State<Request_Mechanic> {
   GetMecController getMecController = Get.put(GetMecController());
+  ProfileController profileController = Get.put(ProfileController());
+  RequestMecController requestMecController = Get.put(RequestMecController());
 
   @override
   Widget build(BuildContext context) {
@@ -120,9 +124,15 @@ class _Request_MechanicState extends State<Request_Mechanic> {
                           ),
                         ),
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        requestMecController.driverID =
+                            profileController.userProfile!.userId;
+                        requestMecController.mecID =
+                            getMecController.mec!.userId;
+                        requestMecController.processPendingRequest();
+                      },
                       child: const Text(
-                        'Request',
+                        'Request Assistance',
                         style: TextStyle(
                           fontSize: 20.0,
                           fontWeight: FontWeight.bold,
