@@ -24,4 +24,6 @@ urlpatterns = [
     path('requestAMec/', RequestAMecView.as_view(), name='requestAMec'),
     path('verifyRequest/', VerifyPendingRequestView.as_view(), name='verifyRequest'),
     path('GetDriverHistory/', GetHistoryView.as_view(), name='GetDriverHistory'),
+    path('getRequest/<str:request_id>', GetRequestView.as_view(), name='getRequest'),
+    path('cancelRequest/', CancelPendingRequestView.as_view(), name='cancelRequest'),
 ]

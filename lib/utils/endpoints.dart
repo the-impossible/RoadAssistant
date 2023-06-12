@@ -16,4 +16,6 @@ class AuthEndPoints {
   final String requestAMec = 'auth/requestAMec/';
   final String verifyRequest = 'auth/verifyRequest/';
   final String getDriverHistory = 'auth/GetDriverHistory/';
+  final String getRequest = 'auth/getRequest/';
+  final String cancelRequest = 'auth/cancelRequest/';
 }

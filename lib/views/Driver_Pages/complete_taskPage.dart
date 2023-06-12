@@ -1,9 +1,11 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:welcome/components/defaultAppBar.dart';
 import 'package:welcome/components/defaultBackButton.dart';
+import 'package:welcome/controllers/cancelrequestController.dart';
+import 'package:welcome/controllers/requestDetailController.dart';
 import 'package:welcome/utils/constant.dart';
-
 
 class Complete_task extends StatefulWidget {
   const Complete_task({super.key});
@@ -13,28 +15,37 @@ class Complete_task extends StatefulWidget {
 }
 
 class _Complete_taskState extends State<Complete_task> {
+  RequestDetailController requestDetailController =
+      Get.put(RequestDetailController());
+  CancelRequestController cancelRequestController =
+      Get.put(CancelRequestController());
+
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+    DateTime localDateTime =
+        requestDetailController.requestDetails!.dateRequested;
+    String requestDate =
+        "${localDateTime.year}-${localDateTime.month}-${localDateTime.day}";
+
     return Scaffold(
       appBar: const DefaultAppBar(
-        title: 'Completed Tasks',
+        title: 'Request Status',
         child: DefaultBackButton(),
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+        padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
         child: Container(
-          height: 350,
-          width: MediaQuery.of(context).size.width,
-          decoration: const BoxDecoration(
-            color: kGreyColor,
-            shape: BoxShape.rectangle,
-            boxShadow: [
+          height: (requestDetailController.requestDetails!.approved)
+              ? size.height * .5
+              : size.height * .6,
+          width: size.width,
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            color: kWhiteColor,
+            boxShadow: const [
               BoxShadow(
-                color: kDarkColor,
-                blurRadius: 5.0,
-                offset: Offset(0, 1),
-                spreadRadius: sqrt1_2,
-              ),
+                  color: kLightColor, blurRadius: 1.0, offset: Offset(1, 3)),
             ],
           ),
           child: Padding(
@@ -42,14 +53,22 @@ class _Complete_taskState extends State<Complete_task> {
                 const EdgeInsets.symmetric(vertical: 30.0, horizontal: 20.0),
             child: Column(
               children: [
-                Image.asset(
-                  'assets/images/profile.png',
-                  height: 100,
-                  width: 100,
+                CircleAvatar(
+                  backgroundColor: Color.fromARGB(255, 228, 236, 230),
+                  maxRadius: 50,
+                  minRadius: 50,
+                  child: ClipOval(
+                    child: Image.memory(
+                      requestDetailController.requestDetails!.image,
+                      width: 80,
+                      height: 80,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
-                const Text(
-                  'Faisol Ademola',
-                  style: TextStyle(
+                Text(
+                  requestDetailController.requestDetails!.bizName,
+                  style: const TextStyle(
                     fontFamily: 'Schyuler',
                     fontSize: 30.0,
                     fontWeight: FontWeight.bold,
@@ -58,9 +77,9 @@ class _Complete_taskState extends State<Complete_task> {
                 const SizedBox(
                   height: 5,
                 ),
-                const Text(
-                  'No. 33, Rock Road Oppsite PolyGate Hotel',
-                  style: TextStyle(
+                Text(
+                  requestDetailController.requestDetails!.shopAddress,
+                  style: const TextStyle(
                     fontFamily: 'Schyuler',
                     fontSize: 20.0,
                     fontStyle: FontStyle.italic,
@@ -71,9 +90,9 @@ class _Complete_taskState extends State<Complete_task> {
                 const SizedBox(
                   height: 5,
                 ),
-                const Text(
-                  '5km far from your current location',
-                  style: TextStyle(
+                Text(
+                  '${requestDetailController.requestDetails!.distance}km far from your current location',
+                  style: const TextStyle(
                     fontFamily: 'Schyuler',
                     fontSize: 20.0,
                     fontStyle: FontStyle.italic,
@@ -84,39 +103,43 @@ class _Complete_taskState extends State<Complete_task> {
                 const Divider(
                   thickness: 1.5,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      Text(
-                        'Request Status:',
-                        style: TextStyle(
-                          fontFamily: 'Schyuler',
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
+                const SizedBox(
+                  height: 5,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      'Request Status: ',
+                      style: TextStyle(
+                        fontFamily: 'Schyuler',
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.bold,
                       ),
-                      Text(
-                        'Completed',
-                        style: TextStyle(
-                          fontSize: 15.0,
-                          fontFamily: 'Schyuler',
-                        ),
+                    ),
+                    Text(
+                      (requestDetailController.requestDetails!.approved)
+                          ? 'Completed'
+                          : 'Pending',
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        fontFamily: 'Schyuler',
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 const SizedBox(
                   height: 10,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Column(
                       children: const [
                         Text(
-                          'Request Date:',
+                          'Request Date: ',
                           style: TextStyle(
                             fontFamily: 'Schyuler',
                             fontSize: 20.0,
@@ -125,9 +148,49 @@ class _Complete_taskState extends State<Complete_task> {
                         ),
                       ],
                     ),
-                    const Text('10/02.2023')
+                    Text(
+                      requestDate,
+                      style: const TextStyle(
+                        fontSize: 20.0,
+                        fontFamily: 'Schyuler',
+                      ),
+                    ),
                   ],
-                )
+                ),
+                (requestDetailController.requestDetails!.approved)
+                    ? const Text('')
+                    : Padding(
+                        padding: const EdgeInsets.only(top: 30),
+                        child: SizedBox(
+                          width: size.width,
+                          height: size.height * .07,
+                          child: ElevatedButton(
+                            style: ButtonStyle(
+                              backgroundColor:
+                                  MaterialStateProperty.all(kFriendlyColor),
+                              shape: MaterialStateProperty.all(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(10.0),
+                                ),
+                              ),
+                            ),
+                            onPressed: () {
+                              cancelRequestController.requestID =
+                                  requestDetailController
+                                      .requestDetails!.requestId;
+                              cancelRequestController.processCancelRequest();
+                            },
+                            child: const Text(
+                              'Cancel Assistance',
+                              style: TextStyle(
+                                fontSize: 20.0,
+                                fontWeight: FontWeight.bold,
+                                color: kWhiteColor,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
               ],
             ),
           ),

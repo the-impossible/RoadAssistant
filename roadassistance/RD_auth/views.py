@@ -72,7 +72,7 @@ class VerifyPendingRequestView(APIView):
 
     def get(self, request, *args, **kwargs):
         driver_id = request.data
-        assistance = RequestMec.objects.filter(pending=True, driver_id=driver_id['driver_id'])
+        assistance = RequestMec.objects.filter(approved=False, driver_id=driver_id['driver_id'])
         if assistance:
             return Response(status = status.HTTP_400_BAD_REQUEST)
         return Response(status = status.HTTP_200_OK)
@@ -86,4 +86,32 @@ class GetHistoryView(generics.ListAPIView):
 
     def get_queryset(self):
         return RequestMec.objects.filter(driver_id=self.request.user).order_by('-date_requested')
+
+
+class GetRequestView(generics.RetrieveAPIView):
+    """This view returns a driver request"""
+    serializer_class = GetRequestSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, request_id):
+        try:
+            assistance = RequestMec.objects.get(request_id=request_id)
+            serializers = GetRequestSerializer(assistance)
+            return Response(serializers.data)
+        except RequestMec.DoesNotExist :
+            return Response(status = status.HTTP_400_BAD_REQUEST)
+
+class CancelPendingRequestView(APIView):
+    """This view cancel a particular driver pending request"""
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        request_id = request.data
+        print(f"CHECK: {request_id['request_id']}")
+        assistance = RequestMec.objects.get(request_id=request_id['request_id'])
+        assistance.approved = True
+        assistance.save()
+        if assistance:
+            return Response(status = status.HTTP_200_OK)
+        return Response(status = status.HTTP_400_BAD_REQUEST)
 

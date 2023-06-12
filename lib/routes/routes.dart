@@ -7,6 +7,7 @@ import 'package:welcome/views/Driver_Pages/homePage.dart';
 import 'package:welcome/views/Driver_Pages/nearbyMechanics.dart';
 import 'package:welcome/views/Driver_Pages/request_Mechanic.dart';
 import 'package:welcome/views/Driver_Pages/tasksPage.dart';
+import 'package:welcome/views/Driver_Pages/update_driver.dart';
 import 'package:welcome/views/Mechanic_page/MecHome.dart';
 import 'package:welcome/views/Pages/about_page.dart';
 import 'package:welcome/views/Pages/help_Page.dart';
@@ -28,6 +29,7 @@ class Routes {
   static String registerPage = '/registerPage';
   static String landing = '/landing';
   static String mecProfilePage = '/mecProfilePage';
+  static String updateDriver = '/updateDriver';
   static String mecHomePage = '/mecHomePage';
   static String bottomNavBar = '/bottomNavBar';
   static String aboutPage = '/aboutPage';
@@ -129,5 +131,9 @@ final getPages = [
   GetPage(
     name: Routes.complete_taskPage,
     page: () => const Complete_task(),
-  )
+  ),
+  GetPage(
+    name: Routes.updateDriver,
+    page: () => const UpdateDriver(),
+  ),
 ];

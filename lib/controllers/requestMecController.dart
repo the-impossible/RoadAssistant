@@ -56,7 +56,9 @@ class RequestMecController extends GetxController {
       navigator!.pop(Get.context!);
 
       if (response.statusCode == 201) {
-        Get.toNamed(Routes.taskPage);
+        Get.offAndToNamed(Routes.taskPage);
+        ScaffoldMessenger.of(Get.context!)
+            .showSnackBar(customSnackBar("Request has been Placed", true));
       } else {
         ScaffoldMessenger.of(Get.context!).showSnackBar(
             customSnackBar("Error: ${response.reasonPhrase} ", false));
@@ -96,6 +98,7 @@ class RequestMecController extends GetxController {
       } else {
         ScaffoldMessenger.of(Get.context!).showSnackBar(customSnackBar(
             "Cancel pending request or wait for mechanic approval", false));
+        Get.offNamed(Routes.taskPage);
       }
     } catch (e) {
       ScaffoldMessenger.of(Get.context!)

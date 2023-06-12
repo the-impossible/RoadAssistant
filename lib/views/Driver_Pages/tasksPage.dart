@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:welcome/components/defaultAppBar.dart';
 import 'package:welcome/components/defaultBackButton.dart';
 import 'package:welcome/controllers/getDriverHistoryController.dart';
+import 'package:welcome/controllers/requestDetailController.dart';
 import 'package:welcome/models/driver_history.dart';
 import 'package:welcome/utils/constant.dart';
 import '../../routes/routes.dart';
@@ -17,6 +18,8 @@ class Task_Page extends StatefulWidget {
 class _Task_PageState extends State<Task_Page> {
   GetDriverHistoryController getDriverHistoryController =
       Get.put(GetDriverHistoryController());
+  RequestDetailController requestDetailController =
+      Get.put(RequestDetailController());
 
   @override
   Widget build(BuildContext context) {
@@ -78,7 +81,9 @@ class _Task_PageState extends State<Task_Page> {
                         ),
                         enabled: true,
                         onTap: () {
-                          Get.toNamed(Routes.complete_taskPage);
+                          requestDetailController.requestID =
+                              historyData.requestId;
+                          requestDetailController.processGetRequest();
                         },
                         leading: const Icon(
                           Icons.notification_important_outlined,

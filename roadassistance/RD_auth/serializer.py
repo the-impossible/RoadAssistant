@@ -165,3 +165,54 @@ class AllRequestSerializer(serializers.ModelSerializer):
         mec = User.objects.get(email=getattr(request_object, 'mec_id'))
 
         return f"{mec.biz_name}".strip()
+
+class GetRequestSerializer(serializers.ModelSerializer):
+
+    distance = serializers.SerializerMethodField("cal_distance")
+    biz_name = serializers.SerializerMethodField("get_biz_name")
+    shop_address = serializers.SerializerMethodField("get_shop_address")
+    image = serializers.SerializerMethodField("get_image")
+
+
+    class Meta:
+        """Meta for the RequestAMecSerializer"""
+        model = RequestMec
+        fields = ['request_id', 'pending', 'approved', 'date_requested', 'biz_name', 'distance', 'image', 'shop_address', ]
+
+    def cal_distance(self, request_object):
+        # Get the current driver geo-coordinate
+        d_lat = getattr(request_object, "lat")
+        d_lon = getattr(request_object, "lon")
+
+        # Get current registered mechanic geo-coordinate
+        mec = User.objects.get(email=getattr(request_object, 'mec_id'))
+
+        m_lat = mec.lat
+        m_lon = mec.lon
+
+        # Organize the coordinate
+        mec_coordinate = (m_lat, m_lon)
+        driver_coordinate = (d_lat, d_lon)
+
+        return f"{geodesic(driver_coordinate, mec_coordinate).km: .2f}".strip()
+
+    def get_biz_name(self, request_object):
+        # Get the current mechanic biz name
+        mec = User.objects.get(email=getattr(request_object, 'mec_id'))
+
+        return f"{mec.biz_name}".strip()
+
+    def get_shop_address(self, request_object):
+        # Get the current mechanic biz name
+        mec = User.objects.get(email=getattr(request_object, 'mec_id'))
+
+        return f"{mec.shop_address}".strip()
+
+    def get_image(self, request_object):
+        """IMAGE"""
+        mec = User.objects.get(email=getattr(request_object, 'mec_id'))
+
+        file = default_storage.open(mec.pic.name, 'rb')
+        data = file.read()
+        file.close()
+        return base64.b64encode(data)

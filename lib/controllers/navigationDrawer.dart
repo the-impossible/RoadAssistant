@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:welcome/controllers/profile_controller.dart';
 import 'package:welcome/routes/routes.dart';
 import 'package:welcome/utils/constant.dart';
 
@@ -25,6 +26,8 @@ class NavigationDrawer extends StatelessWidget {
 
 Widget buildHeader(BuildContext context) {
   final size = MediaQuery.of(context).size;
+  ProfileController profileController = Get.put(ProfileController());
+
   return Material(
     color: kWhiteColor,
     child: InkWell(
@@ -41,18 +44,18 @@ Widget buildHeader(BuildContext context) {
               maxRadius: 50,
               minRadius: 50,
               child: ClipOval(
-                child: Image.asset(
-                  'assets/images/user.png',
-                  height: 80,
+                child: Image.memory(
+                  profileController.userProfile!.image,
                   width: 80,
+                  height: 80,
                   fit: BoxFit.cover,
-                  // alignment: Alignment.topRight,
                 ),
               ),
             ),
-            const Text(
-              "Favour Sule",
-              style: TextStyle(
+            Text(
+              profileController.userProfile!.name,
+              softWrap: true,
+              style: const TextStyle(
                 fontSize: 25,
                 fontWeight: FontWeight.w500,
                 letterSpacing: 1,
@@ -80,7 +83,7 @@ Widget buildMenuItems(BuildContext context) {
           },
         ),
         ListTile(
-            leading: const Icon(Icons.task),
+            leading: const Icon(Icons.history),
             title: const Text('Request History'),
             onTap: () {
               Navigator.pop(context);
@@ -91,7 +94,7 @@ Widget buildMenuItems(BuildContext context) {
             title: const Text('Profile'),
             onTap: () {
               Navigator.pop(context);
-              Get.toNamed(Routes.driverProfile);
+              Get.toNamed(Routes.updateDriver);
             }),
         const Divider(
           color: Colors.black54,
@@ -118,6 +121,7 @@ Widget buildMenuItems(BuildContext context) {
                       onPressed: () {
                         Navigator.pop(context);
                         Navigator.pop(context);
+                        Get.back();
                       },
                       child: const Text('Logout'),
                     ),
