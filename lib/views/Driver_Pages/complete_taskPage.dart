@@ -36,9 +36,10 @@ class _Complete_taskState extends State<Complete_task> {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 20.0, horizontal: 10.0),
         child: Container(
-          height: (requestDetailController.requestDetails!.approved)
-              ? size.height * .5
-              : size.height * .6,
+          height: (!requestDetailController.requestDetails!.approved &&
+                  requestDetailController.requestDetails!.pending)
+              ? size.height * .6
+              : size.height * .45,
           width: size.width,
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
@@ -120,8 +121,10 @@ class _Complete_taskState extends State<Complete_task> {
                     ),
                     Text(
                       (requestDetailController.requestDetails!.approved)
-                          ? 'Completed'
-                          : 'Pending',
+                          ? 'Approved'
+                          : (requestDetailController.requestDetails!.pending)
+                              ? 'Pending'
+                              : 'Canceled',
                       style: const TextStyle(
                         fontSize: 20.0,
                         fontFamily: 'Schyuler',
@@ -157,9 +160,9 @@ class _Complete_taskState extends State<Complete_task> {
                     ),
                   ],
                 ),
-                (requestDetailController.requestDetails!.approved)
-                    ? const Text('')
-                    : Padding(
+                (!requestDetailController.requestDetails!.approved &&
+                        requestDetailController.requestDetails!.pending)
+                    ? Padding(
                         padding: const EdgeInsets.only(top: 30),
                         child: SizedBox(
                           width: size.width,
@@ -190,7 +193,8 @@ class _Complete_taskState extends State<Complete_task> {
                             ),
                           ),
                         ),
-                      ),
+                      )
+                    : const Text(''),
               ],
             ),
           ),

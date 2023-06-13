@@ -56,71 +56,84 @@ class _RequestPageState extends State<RequestPage> {
         title: 'Driver Request',
         child: DefaultBackButton(),
       ),
-      body: StreamBuilder<List<MecRequest>?>(
-          stream: _streamController.stream,
-          builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
-              // While the future is loading
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (snapshot.hasError) {
-              // If an error occurred
-              return Center(
-                child: Text(
-                  'ERROR: ${snapshot.error}',
-                  style: const TextStyle(
-                    fontSize: 15.0,
-                    fontFamily: 'Schuyler',
-                    fontWeight: FontWeight.bold,
-                    color: kDarkColor,
-                  ),
-                ),
-              );
-            } else if (snapshot.hasData) {
-              List<MecRequest> mecRequest = snapshot.data!;
-
-              return ListView.builder(
-                physics: const ClampingScrollPhysics(),
-                padding: EdgeInsets.zero,
-                itemCount: mecRequest.length,
-                itemBuilder: (context, index) {
-                  final mecData = mecRequest[index];
-
-                  return ListTile(
-                    leading: const Icon(Icons.notifications_active_outlined),
-                    trailing: const Icon(Icons.arrow_forward_ios),
-                    title: Text(
-                      mecData.driverName,
-                      style: const TextStyle(color: kDarkColor, fontSize: 20),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: StreamBuilder<List<MecRequest>?>(
+            stream: _streamController.stream,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                // While the future is loading
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else if (snapshot.hasError) {
+                // If an error occurred
+                return Center(
+                  child: Text(
+                    'ERROR: ${snapshot.error}',
+                    style: const TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: 'Schuyler',
+                      fontWeight: FontWeight.bold,
+                      color: kDarkColor,
                     ),
-                    subtitle: Text(
-                      "${mecData.distance} km far away",
-                      style: const TextStyle(color: kLightColor, fontSize: 15),
-                    ),
-                    onTap: () {
-                      mecRequestDetailController.requestID = mecData.requestId;
-                      mecRequestDetailController.processGetRequest();
-                    },
-                    enabled: true,
-                  );
-                },
-              );
-            } else {
-              // If there is no data available
-              return const Center(
-                child: Text(
-                  'No data available!',
-                  style: TextStyle(
-                    fontSize: 15.0,
-                    fontFamily: 'Schuyler',
-                    fontWeight: FontWeight.bold,
-                    color: kDarkColor,
                   ),
-                ),
-              );
-            }
-          }),
+                );
+              } else if (snapshot.hasData) {
+                List<MecRequest> mecRequest = snapshot.data!;
+
+                return ListView.builder(
+                  physics: const ClampingScrollPhysics(),
+                  padding: EdgeInsets.zero,
+                  itemCount: mecRequest.length,
+                  itemBuilder: (context, index) {
+                    final mecData = mecRequest[index];
+
+                    return Column(
+                      children: [
+                        ListTile(
+                          leading: const Icon(
+                              Icons.notifications_active_outlined,
+                              color: kFriendlyColor),
+                          trailing: const Icon(Icons.arrow_forward_ios,
+                              color: kFriendlyColor),
+                          title: Text(
+                            mecData.driverName,
+                            style: const TextStyle(
+                                color: kDarkColor, fontSize: 20),
+                          ),
+                          subtitle: Text(
+                            "${mecData.distance} km far away",
+                            style: const TextStyle(
+                                color: kLightColor, fontSize: 15),
+                          ),
+                          onTap: () {
+                            mecRequestDetailController.requestID =
+                                mecData.requestId;
+                            mecRequestDetailController.processGetRequest();
+                          },
+                          enabled: true,
+                        ),
+                      ],
+                    );
+                  },
+                );
+              } else {
+                // If there is no data available
+                return const Center(
+                  child: Text(
+                    'No data available!',
+                    style: TextStyle(
+                      fontSize: 15.0,
+                      fontFamily: 'Schuyler',
+                      fontWeight: FontWeight.bold,
+                      color: kDarkColor,
+                    ),
+                  ),
+                );
+              }
+            }),
+      ),
     );
   }
 }
