@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:welcome/components/defaultAppBar.dart';
 import 'package:welcome/components/delegatedText.dart';
 import 'package:welcome/controllers/profile_controller.dart';
+import 'package:welcome/controllers/receiveRequestController.dart';
 import 'package:welcome/utils/constant.dart';
 
 import '../../routes/routes.dart';
@@ -12,6 +13,9 @@ class MecHomePage extends StatelessWidget {
   MecHomePage({super.key});
 
   ProfileController profileController = Get.put(ProfileController());
+  ReceiveRequestController receiveRequestController =
+      Get.put(ReceiveRequestController());
+
   DateTime timeBackPressed = DateTime.now();
 
   @override
@@ -127,7 +131,7 @@ class MecHomePage extends StatelessWidget {
                 padding:
                     const EdgeInsets.only(top: 20.0, left: 10.0, right: 10.0),
                 child: Container(
-                  height: size.height * .45,
+                  height: size.height * .35,
                   width: size.width,
                   padding: const EdgeInsets.all(kFixedPadding),
                   decoration: BoxDecoration(
@@ -201,44 +205,12 @@ class MecHomePage extends StatelessWidget {
                               ),
                             ),
                             onPressed: () => {
+                              receiveRequestController.mecID =
+                                  profileController.userProfile!.userId,
                               Get.toNamed(Routes.requestPage),
                             },
                             child: const Text(
                               "Available Request",
-                              style: TextStyle(
-                                color: kFriendlyColor,
-                                fontSize: 20.0,
-                                fontFamily: 'Schuyler',
-                              ),
-                            ),
-                          ),
-                        ),
-                        Container(
-                          padding: const EdgeInsets.only(top: 20.0),
-                          width: size.width * .85,
-                          height: size.height * .12,
-                          child: OutlinedButton(
-                            style: ButtonStyle(
-                              padding: MaterialStateProperty.all(
-                                const EdgeInsets.symmetric(
-                                    vertical: kLessPadding),
-                              ),
-                              side: MaterialStateProperty.all(
-                                const BorderSide(
-                                    color: kFriendlyColor,
-                                    style: BorderStyle.solid),
-                              ),
-                              shape: MaterialStateProperty.all(
-                                RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                              ),
-                            ),
-                            onPressed: () => {
-                              Get.toNamed(Routes.notificationList),
-                            },
-                            child: const Text(
-                              "All Feedback",
                               style: TextStyle(
                                 color: kFriendlyColor,
                                 fontSize: 20.0,

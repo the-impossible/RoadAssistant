@@ -107,11 +107,52 @@ class CancelPendingRequestView(APIView):
 
     def get(self, request, *args, **kwargs):
         request_id = request.data
-        print(f"CHECK: {request_id['request_id']}")
         assistance = RequestMec.objects.get(request_id=request_id['request_id'])
-        assistance.approved = True
+        assistance.approved = False
+        assistance.pending = False
         assistance.save()
         if assistance:
             return Response(status = status.HTTP_200_OK)
         return Response(status = status.HTTP_400_BAD_REQUEST)
+
+class MechanicRequestView(generics.ListAPIView):
+    """This view gets all driver request history"""
+    serializer_class = AllMecRequestSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+    model = RequestMec
+    queryset = RequestMec.objects.all()
+
+    def get_queryset(self):
+        try:
+            return RequestMec.objects.filter(mec_id=self.request.user.user_id, pending=True).order_by('-date_requested')
+        except AttributeError:
+            return None
+
+class GetRequestDetailView(generics.RetrieveAPIView):
+    """This view returns a mec request"""
+    serializer_class = GetMecRequestSerializer
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, request_id):
+        try:
+            assistance = RequestMec.objects.get(request_id=request_id)
+            serializers = GetMecRequestSerializer(assistance)
+            return Response(serializers.data)
+        except RequestMec.DoesNotExist :
+            return Response(status = status.HTTP_400_BAD_REQUEST)
+
+class ApproveRequestView(APIView):
+    """This view approves a particular driver pending request"""
+    permission_classes = (permissions.IsAuthenticated,)
+
+    def get(self, request, *args, **kwargs):
+        request_id = request.data
+        assistance = RequestMec.objects.get(request_id=request_id['request_id'])
+        assistance.approved = True
+        assistance.pending = False
+        assistance.save()
+        if assistance:
+            return Response(status = status.HTTP_200_OK)
+        return Response(status = status.HTTP_400_BAD_REQUEST)
+
 

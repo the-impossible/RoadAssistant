@@ -1,61 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:welcome/controllers/tokenController.dart';
-import 'package:welcome/models/get_mec.dart';
+import 'package:welcome/models/mec_request_details.dart';
+import 'package:welcome/models/request_details.dart';
 import 'package:welcome/routes/routes.dart';
-import 'package:welcome/utils/customFunction.dart';
 import 'package:welcome/utils/custom_snackBar.dart';
 import 'package:welcome/utils/endpoints.dart';
 import 'package:http/http.dart' as http;
 import 'package:welcome/utils/loading.dart';
 
-class CancelRequestController extends GetxController {
+class MecRequestDetailController extends GetxController {
+  MecRequestDetail? requestDetails;
   String? requestID;
-  bool is_driver = true;
 
-  processCancelRequest() async {
+  processGetRequest() async {
     Get.showOverlay(
-        asyncFunction: () => cancelPendingRequest(),
+        asyncFunction: () => getRequestDetails(),
         loadingWidget: const Loading());
   }
 
-  Future<void> cancelPendingRequest() async {
+  Future<void> getRequestDetails() async {
     TokenController tokenController = Get.put(TokenController());
-
     try {
       var headers = {
         'Content-Type': 'application/json',
         'Authorization': 'Bearer ${tokenController.token!.access}'
       };
 
-      var url = Uri.parse(
-          APIEndPoints.baseURL + APIEndPoints.authEndPoints.cancelRequest);
+      var url = Uri.parse(APIEndPoints.baseURL +
+          APIEndPoints.authEndPoints.getMecRequest +
+          requestID!);
 
       var request = http.MultipartRequest('GET', url);
-
-      request.fields.addAll({
-        'request_id': requestID!,
-      });
 
       request.headers.addAll(headers);
 
       http.StreamedResponse response = await request.send();
 
       if (response.statusCode == 200) {
-        Get.back();
-        if (is_driver) {
-          Get.back();
-          ScaffoldMessenger.of(Get.context!)
-              .showSnackBar(customSnackBar("Request has been cancelled", true));
-        } else {
-          ScaffoldMessenger.of(Get.context!)
-              .showSnackBar(customSnackBar("Request has been rejected", true));
-        }
+        requestDetails =
+            mecRequestDetailFromJson(await response.stream.bytesToString());
+
+        Get.offAndToNamed(Routes.requestPageStatus);
       } else {
         ScaffoldMessenger.of(Get.context!)
-            .showSnackBar(customSnackBar("Cancel request failed!", false));
-        Get.offNamed(Routes.taskPage);
+            .showSnackBar(customSnackBar("Error: ", false));
       }
     } catch (e) {
       ScaffoldMessenger.of(Get.context!)

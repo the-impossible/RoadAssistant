@@ -1,26 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
 import 'package:welcome/controllers/tokenController.dart';
-import 'package:welcome/models/get_mec.dart';
 import 'package:welcome/routes/routes.dart';
-import 'package:welcome/utils/customFunction.dart';
 import 'package:welcome/utils/custom_snackBar.dart';
 import 'package:welcome/utils/endpoints.dart';
 import 'package:http/http.dart' as http;
 import 'package:welcome/utils/loading.dart';
 
-class CancelRequestController extends GetxController {
+class ApproveRequestController extends GetxController {
   String? requestID;
-  bool is_driver = true;
 
-  processCancelRequest() async {
+  processApproveRequest() async {
     Get.showOverlay(
-        asyncFunction: () => cancelPendingRequest(),
+        asyncFunction: () => approvePendingRequest(),
         loadingWidget: const Loading());
   }
 
-  Future<void> cancelPendingRequest() async {
+  Future<void> approvePendingRequest() async {
     TokenController tokenController = Get.put(TokenController());
 
     try {
@@ -30,7 +26,7 @@ class CancelRequestController extends GetxController {
       };
 
       var url = Uri.parse(
-          APIEndPoints.baseURL + APIEndPoints.authEndPoints.cancelRequest);
+          APIEndPoints.baseURL + APIEndPoints.authEndPoints.approveRequest);
 
       var request = http.MultipartRequest('GET', url);
 
@@ -44,17 +40,11 @@ class CancelRequestController extends GetxController {
 
       if (response.statusCode == 200) {
         Get.back();
-        if (is_driver) {
-          Get.back();
-          ScaffoldMessenger.of(Get.context!)
-              .showSnackBar(customSnackBar("Request has been cancelled", true));
-        } else {
-          ScaffoldMessenger.of(Get.context!)
-              .showSnackBar(customSnackBar("Request has been rejected", true));
-        }
+        ScaffoldMessenger.of(Get.context!)
+            .showSnackBar(customSnackBar("Request has been Approved", true));
       } else {
         ScaffoldMessenger.of(Get.context!)
-            .showSnackBar(customSnackBar("Cancel request failed!", false));
+            .showSnackBar(customSnackBar("Unable to approve request!", false));
         Get.offNamed(Routes.taskPage);
       }
     } catch (e) {

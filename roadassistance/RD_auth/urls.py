@@ -25,5 +25,10 @@ urlpatterns = [
     path('verifyRequest/', VerifyPendingRequestView.as_view(), name='verifyRequest'),
     path('GetDriverHistory/', GetHistoryView.as_view(), name='GetDriverHistory'),
     path('getRequest/<str:request_id>', GetRequestView.as_view(), name='getRequest'),
+
     path('cancelRequest/', CancelPendingRequestView.as_view(), name='cancelRequest'),
+    path('approveRequest/', ApproveRequestView.as_view(), name='approveRequest'),
+
+    path('allMecRequest/', MechanicRequestView.as_view(), name='allMecRequest'),
+    path('getMecRequest/<str:request_id>', GetRequestDetailView.as_view(), name='getMecRequest'),
 ]
